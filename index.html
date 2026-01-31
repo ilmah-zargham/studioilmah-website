@@ -1,238 +1,328 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Studio Ilmah — Portfolio</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio Ilmah – Landing</title>
 
-  <!-- Google font (clean, Squarespace-like) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+/>
 
-  <link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
-  <!-- Top bar -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Home — Studio Ilmah">Studio Ilmah</a>
+    <link rel="stylesheet" href="css/styles.css" />
 
-      <nav class="main-nav" aria-label="Main">
-        <details class="menu">
-          <summary>Products</summary>
-          <!-- placeholder dropdown; add links later -->
-          <ul class="menu-panel" role="menu">
-            <li role="none"><a role="menuitem" href="#">Coming soon</a></li>
-          </ul>
-        </details>
+  </head>
 
-        <!-- you can add more top links later if you want -->
-      </nav>
+  <body>
+
+
+    <div id="top"></div>
+    
+
+    <!-- Sticky capsule nav (appears when you scroll) -->
+<nav class="sticky-nav" aria-label="Sticky navigation">
+  <a class="sticky-nav__link" href="#top" data-spy="top">Home</a>
+  <a class="sticky-nav__link" href="#projects" data-spy="projects">Projects</a>
+  <a class="sticky-nav__link" href="#about" data-spy="about">About</a>
+  <a class="sticky-nav__link" href="#contact" data-spy="contact">Contact</a>
+</nav>
+
+
+
+
+
+
+
+    <section class="landing-hero">
+      <header class="topbar">
+        <a class="brand" href="#">
+          <img
+            class="brand__logo"
+            src="assets/logo.svg"
+            alt="Studio Ilmah logo"
+          />
+          <span class="brand__name">Studio Ilmah</span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <div class="hero">
+  <div class="hero__content">
+    <div class="hero__hello">
+      <span class="hero__emoji" aria-hidden="true">🙂</span>
+      <span>Hello! I’m</span>
     </div>
-  </header>
 
-  <!-- Hero -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-media" role="img" aria-label="Background image of laptop and workspace"></div>
-    <div class="hero-overlay"></div>
+    <h1 class="hero__name">Ilmah</h1>
 
-    <div class="container hero-content">
-      <p class="eyebrow">Portfolio Website</p>
+    <p class="hero__tagline">
+      Product designer with an engineering background. I design clear,
+      human interfaces for complex systems and love turning messy
+      information into calm, usable experiences.
+    </p>
+  </div>
 
-      <h1 id="hero-title" class="display">
-        Ilmah creates clean, accessible interfaces.
-      </h1>
+  <!-- right-side illustration (shows on morph) -->
+  <div class="hero__side" aria-hidden="true">
+    <img class="hero__illu" src="assets/welcome-illustration.svg" alt="" />
+  </div>
 
-      <p class="lead">
-        Clean, accessible UI/UX and front-end work. Hand-crafted interfaces and thoughtful details.
+  <!-- arc background (ONLY ONCE) -->
+  <div class="hero-arc" aria-hidden="true">
+    <div class="hero-arc__shape"></div>
+    
+  </div>
+</div>
+
+    </section>
+
+    <div class="hero-morph-trigger" aria-hidden="true"></div>
+
+
+
+
+    <main>
+      
+  
+    <section class="vsr-feature" id="projects">
+  <div class="vsr-feature__container">
+    <div class="vsr-feature__image-area" aria-hidden="true">
+      <div class="vsr-feature__yellow-shape"></div>
+
+      <!-- Replace the src with your real image/screenshot -->
+      <img
+        class="vsr-feature__media"
+        src="assets/vsr-case-study-cover.png"
+        alt="VSR website redesign preview"
+      />
+    </div>
+
+    <div class="vsr-feature__content">
+      <div class="vsr-feature__triangle"></div>
+
+      <h2 class="vsr-feature__title">VSR Website Redesign</h2>
+
+      <p class="vsr-feature__description">
+        Redesigning and modernizing a university research group website to improve clarity,
+        navigation, responsiveness, and accessibility.
       </p>
 
-      <div class="cta">
-        <a class="btn btn-white" href="#contact">Contact me</a>
-      </div>
+      <ul class="vsr-feature__details">
+        <li><strong>Project type:</strong> Website redesign + visual system</li>
+        <li><strong>Role:</strong> UI/UX designer</li>
+        <li><strong>Focus:</strong> Information architecture, responsive layout, accessibility, UI assets</li>
+      </ul>
 
-      <!-- Capsule buttons -->
-      <div class="capsule-nav" role="navigation" aria-label="Quick sections">
-        <a class="cap-link" href="#ux-projects">UX Projects</a>
-        <a class="cap-link" href="#coding-projects">Coding Projects</a>
-        <a class="cap-link" href="#about">About</a>
-        <a class="cap-link" href="#contact">Contact</a>
-      </div>
-    </div>
-  </section>
-
-
-    <!-- ================== UX PROJECTS ================== -->
-<section id="ux-projects" class="projects-section light-bg">
-  <div class="container">
-    <h2 class="section-title edge">UI / UX Projects</h2>
-
-    <div class="projects-grid spacious">
-      <!-- Project Card -->
-      <a class="project-card" href="project1.html">
-        <img src="images/yasin-hasan-JlIYT9plM3c-unsplash.jpg" alt="UI/UX Project 1 preview">
-        <h3>Project One</h3>
-      </a>
-
-      <a class="project-card" href="project2.html">
-        <img src="images/rob-hampson-cqFKhqv6Ong-unsplash.jpg" alt="UI/UX Project 2 preview">
-        <h3>Project Two</h3>
-      </a>
-
-      <a class="project-card" href="project3.html">
-        <img src="images/amanz-QSFbZwkenKA-unsplash.jpg" alt="UI/UX Project 3 preview">
-        <h3>Project Three</h3>
-      </a>
-    </div>
-
-    <div class="view-all">
-      <a class="btn btn-outline" href="ux-projects.html">View All</a>
+      <a href="vsr-case-study.html" class="vsr-feature__btn">View case study</a>
     </div>
   </div>
 </section>
 
 
-<!-- ================== CODING PROJECTS ================== -->
-<section id="coding-projects" class="projects-section dark-bg">
-  <div class="container">
-    <h2 class="section-title edge">Coding Projects</h2>
 
-    <div class="projects-grid spacious">
-      <a class="project-card" href="coding1.html">
-        <img src="images/yasin-hasan-JlIYT9plM3c-unsplash.jpg" alt="Coding Project 1 preview">
-        <h3>Coding Project One</h3>
-      </a>
+<section class="ecolu-feature" id="ecolu">
+  <div class="ecolu-feature__container">
+    <div class="ecolu-feature__content">
+      <div class="ecolu-feature__triangle"></div>
 
-      <a class="project-card" href="coding2.html">
-        <img src="images/rob-hampson-cqFKhqv6Ong-unsplash.jpg" alt="Coding Project 2 preview">
-        <h3>Coding Project Two</h3>
-      </a>
+      <h2 class="ecolu-feature__title">Ecolu</h2>
 
-      <a class="project-card" href="coding3.html">
-        <img src="images/amanz-QSFbZwkenKA-unsplash.jpg" alt="Coding Project 3 preview">
-        <h3>Coding Project Three</h3>
-      </a>
-    </div>
-
-    <div class="view-all">
-      <a class="btn btn-outline" href="coding-projects.html">View All</a>
-    </div>
-  </div>
-</section>
-
-
-  <!-- ================== ABOUT ================== -->
-<section id="about" class="about-section light-bg">
-  <div class="container about-grid">
-    <!-- Optional headshot (remove <img> if you don't want it) -->
-    <div class="about-media">
-      <img src="images/profile.jpg" alt="Portrait of Ilmah" />
-    </div>
-
-    <div class="about-content">
-      <h2 class="section-title edge">About</h2>
-      <p class="about-lead">
-        I’m Ilmah — a UI/UX designer with front-end skills. I focus on clarity,
-        accessibility, and systems thinking. Recently I’ve designed conference pages,
-        poster systems, and brand iterations, and I’m growing into product UI and modern front-end.
+      <p class="ecolu-feature__description">
+        An eco-friendly shopping concept that helps users make smarter, more sustainable choices
+        through clear product information, categories, and guidance at the moment of decision.
       </p>
 
-      <div class="chip-row" aria-label="Skills and tools">
-        <span class="chip">UI/UX</span>
-        <span class="chip">Accessibility</span>
-        <span class="chip">Figma</span>
-        <span class="chip">HTML/CSS</span>
-        <span class="chip">Responsive Design</span>
-        <span class="chip">GitHub Pages</span>
-      </div>
+      <ul class="ecolu-feature__details">
+        <li><strong>Project type:</strong> Product concept + UI design</li>
+        <li><strong>Role:</strong> Product designer</li>
+        <li><strong>Focus:</strong> UX flows, wireframes, UI, and interaction patterns</li>
+      </ul>
 
-      <div class="about-cta">
-        <a class="btn btn-white" href="files/Ilmah-CV.pdf" target="_blank" rel="noopener">Download CV</a>
-        <a class="btn" href="#contact">Contact</a>
-      </div>
+      <a href="ecolu-case-study.html" class="ecolu-feature__btn">View case study</a>
+    </div>
+
+    <div class="ecolu-feature__image-area" aria-hidden="true">
+      <div class="ecolu-feature__yellow-shape"></div>
+
+      <!-- Replace the src with your real Ecolu image -->
+      <img
+        class="ecolu-feature__media"
+        src="assets/ecolu-cover.png"
+        alt="Ecolu project preview"
+      />
+    </div>
+  </div>
+</section>
+   
+
+<section class="saas-feature" id="saas-project">
+  <div class="saas-feature__container">
+    <div class="saas-feature__image-area" aria-hidden="true">
+      <div class="saas-feature__shape"></div>
+
+      <!-- Replace with your SaaS project image -->
+      <img
+        class="saas-feature__media"
+        src="assets/saas-project-cover.png"
+        alt="SaaS project preview"
+      />
+    </div>
+
+    <div class="saas-feature__content">
+      <h2 class="saas-feature__title">SaaS Project</h2>
+
+      <p class="saas-feature__description">
+        A software-as-a-service product focused on simplifying complex workflows
+        through clear information architecture, intuitive interfaces, and scalable
+        design systems.
+      </p>
+
+      <ul class="saas-feature__details">
+        <li><strong>Project type:</strong> SaaS product design</li>
+        <li><strong>Role:</strong> Product designer</li>
+        <li><strong>Focus:</strong> UX strategy, UI design, design system, usability</li>
+      </ul>
+
+      <a href="saas-case-study.html" class="saas-feature__btn">
+        View case study
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ================== CONTACT ================== -->
-<section id="contact" class="contact-section dark-bg">
-  <div class="container">
-    <h2 class="section-title edge">Contact</h2>
-    <p class="contact-lead">Interested in collaborating or hiring? The fastest way is email.</p>
 
-    <div class="contact-cards">
-      <a class="contact-card" href="mailto:hello@example.com">
-        <h3>Email</h3><p>hello@example.com</p>
-      </a>
-      <a class="contact-card" href="https://github.com/yourusername" target="_blank" rel="noopener">
-        <h3>GitHub</h3><p>github.com/yourusername</p>
-      </a>
-      <a class="contact-card" href="https://www.linkedin.com/in/yourname/" target="_blank" rel="noopener">
-        <h3>LinkedIn</h3><p>linkedin.com/in/yourname</p>
-      </a>
+
+   <section class="section-band" id="about">
+  <div class="section-wrap about-grid">
+
+    <!-- LEFT: text -->
+    <div class="about-text">
+      <h2 class="section-title">About</h2>
+
+      <p class="section-lead">
+        I’m a product designer with an engineering background. I enjoy making complex
+        systems feel clear and human, especially when the information is messy or the workflow is intense.
+      </p>
+
+      <p class="section-body">
+        I combine structured thinking with visual sensitivity, from early UX flows and information architecture
+        to UI design and interaction details. I care about accessibility, consistency, and the small moments
+        that build trust in a product. Right now I’m building a portfolio of case studies that show not only
+        the final screens, but also the decisions behind them.
+      </p>
     </div>
 
-    <!-- Simple form (Formspree)—replace YOUR_FORM_ID -->
-    <form class="contact-form" action="https://formspree.io/f/myzdvvwz" method="POST">
-      <!-- honeypot to reduce spam -->
-      <input type="text" name="_gotcha" style="display:none">
-      <div class="form-row">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" placeholder="Your name" required>
-      </div>
-      <div class="form-row">
-        <label for="email">Email</label>
-        <input id="email" name="_replyto" type="email" placeholder="you@example.com" required>
-      </div>
-      <div class="form-row">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="6" placeholder="Tell me a bit about your project…" required></textarea>
-      </div>
-      <button class="btn btn-white" type="submit">Send</button>
-      <p class="form-note">If the form hasn’t been connected yet, email me directly.</p>
-    </form>
+    <!-- RIGHT: image -->
+    <div class="about-photo">
+      <img src="assets/ilmah-photo.PNG" alt="Portrait of Ilmah" />
+    </div>
 
-    <!-- Netlify alternative (use this instead of Formspree block):
-    <form class="contact-form" name="contact" method="POST" data-netlify="true">
-      <input type="hidden" name="form-name" value="contact">
-      <div class="form-row"><label>Name<input name="name" required></label></div>
-      <div class="form-row"><label>Email<input name="email" type="email" required></label></div>
-      <div class="form-row"><label>Message<textarea name="message" rows="6" required></textarea></label></div>
-      <button class="btn btn-white" type="submit">Send</button>
-    </form>
-    -->
   </div>
 </section>
 
-<!-- ================== FOOTER ================== -->
+
+<section class="section-band" id="contact">
+  <div class="section-wrap">
+    <h2 class="section-title">Contact</h2>
+
+    <p class="section-lead">
+      If you’d like to talk about a project, a role, or just exchange ideas,
+      feel free to reach out.
+    </p>
+
+    <div class="contact-grid">
+      <!-- LEFT COLUMN -->
+      <div class="contact-left">
+        <p class="section-body">
+          I’m especially interested in product design work where clarity,
+          usability, and collaboration matter, and where design helps people
+          feel confident using complex tools.
+        </p>
+
+        <a
+  class="section-btn"
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=ilmah.zargam@gmail.com&su=About%20Work&body=Hi%20Ilmah%2C%0A%0A"
+  target="_blank"
+  rel="noopener"
+>
+  Email me
+</a>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <aside class="contact-card">
+        <h3>Links</h3>
+        <ul class="contact-list">
+          <li>
+            <a class="contact-link" href="mailto:ilmah.zargam@gmail.com">
+              ilmah.zargam@gmail.com
+            </a>
+          </li>
+          <li>
+            <a
+              class="contact-link"
+              href="https://www.linkedin.com/in/ilmahzargham"
+              target="_blank"
+              rel="noopener"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a
+              class="contact-link"
+              href="assets/Ilmah-Zargham-CV.pdf"
+              target="_blank"
+              rel="noopener"
+            >
+              View CV (PDF)
+            </a>
+          </li>
+        </ul>
+
+        <p class="contact-note">
+          I usually reply within 1–2 days.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+
+    </main>
+
+
+
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-left">
-      <p>© <span id="year"></span> Ilmah</p>
-      <p class="footer-small">Built with semantic HTML & CSS · Hosted on GitHub Pages</p>
-    </div>
-    <nav class="footer-links" aria-label="Footer">
-      <a href="#ux-projects">UX Projects</a>
-      <a href="#coding-projects">Coding Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a>
-    </nav>
+  <div class="footer-inner">
+
+    <p class="footer-text">
+      Thank you for your interest in my work!
+    </p>
+    <p class="footer-meta">
+      © 2026 Ilmah
+    </p>
+
   </div>
 </footer>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
 
-</body>
+<button class="scroll-top" aria-label="Scroll to top">
+  ↑
+</button>
+
+
+
+
+<script src="js/main.js" defer></script>
+
+  </body>
 </html>
-  
-
-</body>
-</html>
-
-
-
-
