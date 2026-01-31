@@ -1,5 +1,4 @@
-
-      :root {
+: root {
         --ink: #121212;
         --accent-blue: #2733c7;
         --arc-yellow: #ffca39;
@@ -1299,3 +1298,4 @@ box-shadow: none;
     padding: 9px 12px;
   }
 }
+      
