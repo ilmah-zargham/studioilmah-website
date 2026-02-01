@@ -59,76 +59,77 @@
 
 
 
-  (function () {
-    const stickyNav = document.querySelector(".sticky-nav");
-    if (!stickyNav) return;
+ (function () {
+  const stickyNav = document.querySelector(".sticky-nav");
+  if (!stickyNav) return;
 
-    const links = Array.from(stickyNav.querySelectorAll(".sticky-nav__link"));
-    const setActive = (key) => {
-      links.forEach((a) => a.classList.toggle("is-active", a.dataset.spy === key));
-    };
+  const links = Array.from(stickyNav.querySelectorAll(".sticky-nav__link"));
+  const map = {
+    home: document.querySelector("#home"),
+    projects: document.querySelector("#projects"),
+    about: document.querySelector("#about"),
+    contact: document.querySelector("#contact"),
+  };
 
-    // 1) Show/hide capsule on scroll
-    const toggleVisible = () => {
-      if (window.scrollY > 120) stickyNav.classList.add("is-visible");
-      else stickyNav.classList.remove("is-visible");
-    };
-    window.addEventListener("scroll", toggleVisible, { passive: true });
-    toggleVisible();
+  const sections = Object.entries(map)
+    .filter(([, el]) => el)
+    .map(([key, el]) => ({ key, el }));
 
-    // 2) Scrollspy using IntersectionObserver
-    const sections = [
-      { key: "top", el: document.querySelector(".landing-hero") },
-      { key: "projects", el: document.querySelector("#projects") },
-      { key: "about", el: document.querySelector("#about") },
-      { key: "contact", el: document.querySelector("#contact") },
-    ].filter(s => s.el);
+  if (!sections.length) return;
 
-    // If nothing found, stop
-    if (!sections.length) return;
+  const setActive = (key) => {
+    links.forEach((a) => a.classList.toggle("is-active", a.dataset.spy === key));
+  };
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        // pick the most visible intersecting section
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => (b.intersectionRatio - a.intersectionRatio))[0];
+  // show/hide capsule on scroll (same behavior everywhere)
+  const toggleVisible = () => {
+    if (window.scrollY > 120) stickyNav.classList.add("is-visible");
+    else stickyNav.classList.remove("is-visible");
+  };
 
-        if (visible) {
-          const found = sections.find(s => s.el === visible.target);
-          if (found) setActive(found.key);
-        }
-      },
-      {
-        root: null,
-        threshold: [0.2, 0.35, 0.5, 0.65],
-        // pushes the "active" point a bit down from top so it feels natural
-        rootMargin: "-20% 0px -55% 0px",
-      }
-    );
+  // robust scrollspy for mobile + desktop
+  const SPY_OFFSET = 140; // how far from top counts as "active"
+  const updateActive = () => {
+    const y = window.scrollY + SPY_OFFSET;
 
-    sections.forEach(s => io.observe(s.el));
+    let current = sections[0].key;
+    for (const s of sections) {
+      if (s.el.offsetTop <= y) current = s.key;
+    }
+    setActive(current);
+  };
 
-    // Default active
-    setActive("top");
+  // Smooth scroll for sticky nav clicks
+  const SCROLL_OFFSET = 90;
+  links.forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const href = a.getAttribute("href");
+      if (!href || !href.startsWith("#")) return;
 
-    // 3) Smooth scroll on click (and account for sticky nav height)
-    links.forEach((a) => {
-      a.addEventListener("click", (e) => {
-        const href = a.getAttribute("href");
-        if (!href || !href.startsWith("#")) return;
+      const target = document.querySelector(href);
+      if (!target) return;
 
-        const target = document.querySelector(href);
-        if (!target) return;
+      e.preventDefault();
 
-        e.preventDefault();
-
-        const y = target.getBoundingClientRect().top + window.scrollY;
-        const offset = 90; // adjust if you want it higher/lower
-        window.scrollTo({ top: Math.max(0, y - offset), behavior: "smooth" });
-      });
+      const y = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: Math.max(0, y - SCROLL_OFFSET), behavior: "smooth" });
     });
-  })();
+  });
+
+  // run once + on scroll
+  const onScroll = () => {
+    toggleVisible();
+    updateActive();
+  };
+
+  window.addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true });
+  window.addEventListener("resize", () => requestAnimationFrame(onScroll));
+
+  // initial
+  toggleVisible();
+  updateActive();
+})();
+
 
 
 
