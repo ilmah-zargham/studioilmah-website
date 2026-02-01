@@ -1298,3 +1298,144 @@ box-shadow: none;
     padding: 9px 12px;
   }
 }
+
+
+
+
+/* ================================
+   MOBILE FIXES (Hero + Projects)
+   Paste at END of your CSS
+================================ */
+
+/* Use safe viewport height on mobile */
+@media (max-width: 640px) {
+  .landing-hero {
+    min-height: 100svh;
+  }
+
+  .hero {
+    min-height: calc(100svh - 88px);
+    padding-top: 56px;            /* less top padding on mobile */
+  }
+
+  .hero__content {
+    margin-top: 16px;
+    text-align: center;
+    width: min(92vw, 520px);
+  }
+
+  .hero__hello {
+    justify-content: center;
+  }
+
+  .hero__tagline {
+    margin: 0 auto;
+    max-width: 34ch;
+  }
+
+  /* Make the arc visible on mobile */
+  .hero-arc__shape {
+    width: 180vw;
+    height: 180vw;
+    bottom: -110vw;              /* pulls the arc UP so you can see it */
+  }
+
+  /* On mobile, DO NOT shift left / sticky */
+  .landing-hero.is-morphed .hero__content {
+    transform: none !important;
+    position: relative !important;
+    top: auto !important;
+    text-align: center !important;
+  }
+
+  .landing-hero.is-morphed .hero__tagline {
+    margin: 0 auto !important;
+    width: auto !important;
+  }
+
+  .landing-hero.is-morphed .hero__hello,
+  .landing-hero.is-morphed .hero__name {
+    margin-left: 0 !important;
+  }
+
+  /* Put the illustration UNDER the text on mobile (and size it) */
+  .hero__side {
+    position: static !important;
+    width: min(320px, 86vw) !important;
+    margin: 18px auto 0 !important;
+    opacity: 0;                 /* still hidden before morph */
+    transform: translateY(10px) scale(0.98);
+    pointer-events: none;
+  }
+
+  .landing-hero.is-morphed .hero__side {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Reduce/soften the illustration motion on mobile */
+  .landing-hero.is-morphed .hero__illu {
+    animation: heroWave 2.4s ease-in-out infinite;
+    transform-origin: 60% 60%;
+  }
+}
+
+
+/* ================================
+   PROJECT SECTIONS MOBILE
+================================ */
+@media (max-width: 1024px) {
+  /* you already have some responsive rules,
+     but your image areas still have min-width/height issues */
+  .vsr-feature__image-area,
+  .ecolu-feature__image-area,
+  .saas-feature__image-area {
+    min-width: auto;
+    height: auto;
+    padding: 18px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .vsr-feature__container,
+  .ecolu-feature__container,
+  .saas-feature__container {
+    padding: 34px 18px;
+  }
+
+  /* Make shapes smaller on phones */
+  .vsr-feature__yellow-shape,
+  .ecolu-feature__yellow-shape,
+  .saas-feature__shape {
+    width: 180px;
+    height: 180px;
+    border-radius: 22px;
+  }
+
+  /* Make project images fit phone width and reduce rotation */
+  .vsr-feature__media,
+  .ecolu-feature__media,
+  .saas-feature__media {
+    width: min(88vw, 360px);
+    max-width: 100%;
+    transform: rotate(-8deg);   /* less aggressive than -15deg */
+    border-radius: 18px;
+  }
+
+  /* Optional: if you want ZERO rotation on mobile, use this instead:
+  .vsr-feature__media,
+  .ecolu-feature__media,
+  .saas-feature__media {
+    transform: none;
+  }
+  */
+
+  /* Titles don’t get cut off */
+  .vsr-feature__title,
+  .ecolu-feature__title,
+  .saas-feature__title {
+    font-size: 2.6rem;
+    line-height: 1.05;
+  }
+}
+
