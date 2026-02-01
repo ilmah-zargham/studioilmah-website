@@ -131,6 +131,7 @@
   })();
 
 
+
 (function () {
   const toggle = document.querySelector(".nav-toggle");
   const menu = document.querySelector(".mobile-menu");
@@ -141,30 +142,27 @@
 
   function openMenu() {
     document.body.classList.add("is-menu-open");
+    toggle.classList.add("is-open");
     toggle.setAttribute("aria-expanded", "true");
     menu.setAttribute("aria-hidden", "false");
   }
 
   function closeMenu() {
     document.body.classList.remove("is-menu-open");
+    toggle.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
     menu.setAttribute("aria-hidden", "true");
   }
 
   toggle.addEventListener("click", () => {
-    document.body.classList.contains("is-menu-open")
-      ? closeMenu()
-      : openMenu();
+    document.body.classList.contains("is-menu-open") ? closeMenu() : openMenu();
   });
 
   closeBtn.addEventListener("click", closeMenu);
 
-  links.forEach(link =>
-    link.addEventListener("click", closeMenu)
-  );
+  links.forEach((link) => link.addEventListener("click", closeMenu));
 
   menu.addEventListener("click", (e) => {
     if (e.target === menu) closeMenu();
   });
 })();
-
