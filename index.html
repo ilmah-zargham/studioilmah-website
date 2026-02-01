@@ -34,42 +34,33 @@
 
 
 
-    <section class="landing-hero">
-      <header class="topbar">
-        <a class="brand" href="#">
-          <img
-            class="brand__logo"
-            src="assets/logo.svg"
-            alt="Studio Ilmah logo"
-          />
-          <span class="brand__name">Studio Ilmah</span>
-        </a>
+    <section class="landing-hero" id="home">
+     <header class="topbar">
+  <a class="brand" href="#home">
+    <img class="brand__logo" src="assets/logo.svg" alt="Studio Ilmah logo" />
+    <span class="brand__name">Studio Ilmah</span>
+  </a>
 
-        <nav class="nav" aria-label="Primary">
-          <a href="#projects">Projects</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
-<!-- update for mobile  -->
-        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
-      <!-- update for mobile end  -->     
-      </header>
-      
-<!-- update for mobile  -->
-      <div class="mobile-menu" aria-hidden="true">
-  <div class="mobile-menu__panel">
-    <button class="mobile-menu__close" aria-label="Close menu">×</button>
+  <nav class="nav" aria-label="Primary">
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <a href="#projects" class="mobile-menu__link">Projects</a>
-    <a href="#about" class="mobile-menu__link">About</a>
-    <a href="#contact" class="mobile-menu__link">Contact</a>
-  </div>
-</div>
-<!-- update for mobile end  -->
+  <!-- Mobile menu button (only shows on mobile) -->
+  <button class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
+    <span class="burger" aria-hidden="true"></span>
+  </button>
+
+  <!-- Mobile capsule nav (only shows on mobile) -->
+  <nav class="capsule-nav" aria-label="Mobile navigation">
+    <a class="capsule-link is-active" href="#home">Home</a>
+    <a class="capsule-link" href="#projects">Projects</a>
+    <a class="capsule-link" href="#about">About</a>
+    <a class="capsule-link" href="#contact">Contact</a>
+  </nav>
+</header>
+
       
 
       <div class="hero">
@@ -346,4 +337,5 @@
 
   </body>
 </html>
+
 
