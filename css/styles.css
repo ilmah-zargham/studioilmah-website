@@ -1621,5 +1621,40 @@ box-shadow: none;
 }
 
 
+/* =========================
+   PROJECT TEXT: LEFT ON MOBILE
+   ========================= */
+@media (max-width: 640px) {
+  /* Make all project text left-aligned on mobile */
+  .vsr-feature__content,
+  .ecolu-feature__content,
+  .saas-feature__content {
+    text-align: left !important;
+    align-items: flex-start !important; /* in case it's a flex column */
+  }
+
+  /* Ensure inner text blocks don't stay centered */
+  .vsr-feature__title,
+  .ecolu-feature__title,
+  .saas-feature__title,
+  .vsr-feature__description,
+  .ecolu-feature__description,
+  .saas-feature__description,
+  .vsr-feature__details,
+  .ecolu-feature__details,
+  .saas-feature__details {
+    text-align: left !important;
+  }
+
+  /* If the button was centered using margin auto, force it left */
+  .vsr-feature__btn,
+  .ecolu-feature__btn,
+  .saas-feature__btn {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    align-self: flex-start !important;
+  }
+}
+
 
 
