@@ -1440,6 +1440,7 @@ box-shadow: none;
 }
 
 
+
 /* =========================
    MOBILE HAMBURGER NAV ONLY
    ========================= */
@@ -1451,6 +1452,12 @@ box-shadow: none;
   border: none;
   background: transparent;
   cursor: pointer;
+
+  /* IMPORTANT: stack bars vertically */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .nav-toggle span {
@@ -1458,8 +1465,19 @@ box-shadow: none;
   width: 22px;
   height: 2px;
   background: #121212;
-  margin: 5px auto;
   border-radius: 999px;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+/* Animate to X when open */
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Mobile menu overlay */
@@ -1521,15 +1539,62 @@ body.is-menu-open .mobile-menu__panel {
 
 /* MOBILE ONLY */
 @media (max-width: 900px) {
-  .nav {
-    display: none; /* hide desktop links */
+  .nav { display: none; }
+  .nav-toggle { display: inline-flex; }
+}
+
+
+
+/* =========================
+   HERO MOBILE LAYOUT FIX
+   ========================= */
+@media (max-width: 900px) {
+  /* Make hero stack vertically */
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 64px;
   }
 
-  .nav-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  /* Center the content */
+  .hero__content {
+    text-align: center;
+    width: min(680px, 92vw);
+    margin-top: 0;
+    transform: none !important; /* prevents left shift on morph */
+    position: relative;         /* prevents sticky behavior on mobile */
+    top: auto;
+  }
+
+  .hero__tagline {
+    margin: 0 auto;
+    width: min(520px, 92vw);
+    max-width: 46ch;
+  }
+
+  /* Put illustration under the text */
+  .hero__side {
+    position: static;
+    width: min(420px, 86vw);
+    margin: 22px auto 0;
+    order: 2;
+    opacity: 1;                 /* show it nicely on mobile */
+    transform: none;
+    pointer-events: none;
+  }
+
+  /* Ensure morph state doesn't push text left on mobile */
+  .landing-hero.is-morphed .hero__content {
+    text-align: center;
+    transform: none;
+    position: relative;
+    top: auto;
   }
 }
+
+
+
+
 
 
