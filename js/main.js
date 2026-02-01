@@ -130,3 +130,41 @@
     });
   })();
 
+
+(function () {
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.querySelector(".mobile-menu");
+  const closeBtn = document.querySelector(".mobile-menu__close");
+  const links = document.querySelectorAll(".mobile-menu__link");
+
+  if (!toggle || !menu) return;
+
+  function openMenu() {
+    document.body.classList.add("is-menu-open");
+    toggle.setAttribute("aria-expanded", "true");
+    menu.setAttribute("aria-hidden", "false");
+  }
+
+  function closeMenu() {
+    document.body.classList.remove("is-menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+    menu.setAttribute("aria-hidden", "true");
+  }
+
+  toggle.addEventListener("click", () => {
+    document.body.classList.contains("is-menu-open")
+      ? closeMenu()
+      : openMenu();
+  });
+
+  closeBtn.addEventListener("click", closeMenu);
+
+  links.forEach(link =>
+    link.addEventListener("click", closeMenu)
+  );
+
+  menu.addEventListener("click", (e) => {
+    if (e.target === menu) closeMenu();
+  });
+})();
+
