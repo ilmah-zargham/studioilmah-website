@@ -1439,162 +1439,139 @@ box-shadow: none;
   }
 }
 
-
-
 /* =========================
-   MOBILE HAMBURGER NAV ONLY
+   MOBILE HAMBURGER + CAPSULE
+   (does NOT affect desktop)
    ========================= */
 
-.nav-toggle {
+/* Hide hamburger + mobile capsule on desktop */
+.mobile-menu-btn,
+.capsule-nav {
   display: none;
-  width: 44px;
-  height: 44px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-
-  /* IMPORTANT: stack bars vertically */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
 }
 
-.nav-toggle span {
+/* Hamburger button */
+.mobile-menu-btn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* The 3 lines */
+.mobile-menu-btn .burger,
+.mobile-menu-btn .burger::before,
+.mobile-menu-btn .burger::after {
+  content: "";
   display: block;
   width: 22px;
   height: 2px;
-  background: #121212;
+  background: rgba(0, 0, 0, 0.9);
   border-radius: 999px;
-  transition: transform 200ms ease, opacity 200ms ease;
+  transition: transform 220ms ease, opacity 180ms ease;
+  margin: 0 auto;
 }
 
-/* Animate to X when open */
-.nav-toggle.is-open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-.nav-toggle.is-open span:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle.is-open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+.mobile-menu-btn .burger {
+  position: relative;
 }
 
-/* Mobile menu overlay */
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  z-index: 3000;
-}
-
-.mobile-menu__panel {
+.mobile-menu-btn .burger::before {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
-  transform: translateY(-10px);
-  transition: transform 0.25s ease;
+  top: -7px;
+  left: 0;
 }
 
-.mobile-menu__close {
-  border: none;
-  background: transparent;
-  font-size: 28px;
-  cursor: pointer;
-  margin-left: auto;
-  display: block;
+.mobile-menu-btn .burger::after {
+  position: absolute;
+  top: 7px;
+  left: 0;
 }
 
-.mobile-menu__link {
-  display: block;
-  padding: 14px 10px;
-  text-decoration: none;
-  color: #121212;
-  font-weight: 600;
-  font-size: 18px;
-  border-radius: 12px;
+/* Open state -> X */
+.mobile-menu-btn.is-open .burger {
+  background: transparent; /* hide middle */
 }
 
-.mobile-menu__link:hover {
-  background: rgba(0, 0, 0, 0.05);
+.mobile-menu-btn.is-open .burger::before {
+  transform: translateY(7px) rotate(45deg);
 }
 
-/* Active state */
-body.is-menu-open .mobile-menu {
-  opacity: 1;
-  pointer-events: auto;
+.mobile-menu-btn.is-open .burger::after {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
-body.is-menu-open .mobile-menu__panel {
-  transform: translateY(0);
-}
-
-/* MOBILE ONLY */
+/* Mobile only */
 @media (max-width: 900px) {
-  .nav { display: none; }
-  .nav-toggle { display: inline-flex; }
-}
+  /* Hide desktop links */
+  .nav {
+    display: none;
+  }
 
-
-
-/* =========================
-   HERO MOBILE LAYOUT FIX
-   ========================= */
-@media (max-width: 900px) {
-  /* Make hero stack vertically */
-  .hero {
-    flex-direction: column;
+  /* Show hamburger */
+  .mobile-menu-btn {
+    display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 64px;
+    justify-content: center;
   }
 
-  /* Center the content */
-  .hero__content {
-    text-align: center;
-    width: min(680px, 92vw);
-    margin-top: 0;
-    transform: none !important; /* prevents left shift on morph */
-    position: relative;         /* prevents sticky behavior on mobile */
-    top: auto;
-  }
+  /* Mobile capsule nav (dropdown under topbar) */
+  .capsule-nav {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 10px;
 
-  .hero__tagline {
-    margin: 0 auto;
-    width: min(520px, 92vw);
-    max-width: 46ch;
-  }
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 18px;
 
-  /* Put illustration under the text */
-  .hero__side {
-    position: static;
-    width: min(420px, 86vw);
-    margin: 22px auto 0;
-    order: 2;
-    opacity: 1;                 /* show it nicely on mobile */
-    transform: none;
+    width: min(260px, calc(100vw - 36px));
+    padding: 12px;
+
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.12);
+
+    opacity: 0;
+    transform: translateY(-6px);
     pointer-events: none;
+    transition: opacity 180ms ease, transform 220ms ease;
+
+    z-index: 3000;
   }
 
-  /* Ensure morph state doesn't push text left on mobile */
-  .landing-hero.is-morphed .hero__content {
-    text-align: center;
-    transform: none;
-    position: relative;
-    top: auto;
+  /* When open */
+  .capsule-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .capsule-link {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 14px;
+    border-radius: 999px;
+    color: rgba(0, 0, 0, 0.8);
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+
+  .capsule-link:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .capsule-link.is-active {
+    background: var(--accent-blue);
+    color: #fff;
   }
 }
-
-
-
-
 
 
