@@ -139,28 +139,30 @@
 
   const links = Array.from(mobileCapsule.querySelectorAll(".capsule-link"));
 
+  const isMobile = () => window.matchMedia("(max-width: 900px)").matches;
+
   function setActiveById(id) {
     links.forEach((a) => {
       const href = a.getAttribute("href") || "";
-      const match = href === `#${id}`;
-      a.classList.toggle("is-active", match);
+      a.classList.toggle("is-active", href === `#${id}`);
     });
   }
 
   function openMenu() {
+    mobileCapsule.classList.add("is-open");
     btn.classList.add("is-open");
     btn.setAttribute("aria-expanded", "true");
-    mobileCapsule.classList.add("is-open");
   }
 
   function closeMenu() {
+    mobileCapsule.classList.remove("is-open");
     btn.classList.remove("is-open");
     btn.setAttribute("aria-expanded", "false");
-    mobileCapsule.classList.remove("is-open");
   }
 
-  // Toggle on click
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     mobileCapsule.classList.contains("is-open") ? closeMenu() : openMenu();
   });
 
@@ -184,12 +186,14 @@
 
   // Close if you tap outside
   document.addEventListener("click", (e) => {
+    if (!isMobile()) return;
     if (!mobileCapsule.classList.contains("is-open")) return;
-    const isInside = mobileCapsule.contains(e.target) || btn.contains(e.target);
-    if (!isInside) closeMenu();
+
+    const inside = mobileCapsule.contains(e.target) || btn.contains(e.target);
+    if (!inside) closeMenu();
   });
 
-  // Scrollspy for mobile capsule
+  // Scrollspy for mobile capsule (mobile only)
   const sections = [
     { id: "home", el: document.querySelector("#home") },
     { id: "projects", el: document.querySelector("#projects") },
@@ -201,6 +205,9 @@
 
   const io = new IntersectionObserver(
     (entries) => {
+      if (!isMobile()) return;
+
+      // pick the closest section to the top "reading zone"
       const visible = entries
         .filter((e) => e.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -211,9 +218,9 @@
       }
     },
     {
-      root: null,
-      threshold: [0.25, 0.4, 0.55, 0.7],
-      rootMargin: "-20% 0px -55% 0px",
+      threshold: [0.12, 0.25, 0.4],
+      // more forgiving on mobile:
+      rootMargin: "-10% 0px -70% 0px",
     }
   );
 
@@ -221,4 +228,9 @@
 
   // Default
   setActiveById("home");
+
+  // If user rotates to desktop, close menu and do nothing else
+  window.addEventListener("resize", () => {
+    if (!isMobile()) closeMenu();
+  });
 })();
