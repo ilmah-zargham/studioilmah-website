@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecolu Case Study</title>
+
+    <style>
+      /* Base */
+      * { box-sizing: border-box; }
+      body{
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: #ffffff;
+        color: #0b0d10;
+      }
+      a { color: inherit; }
+      html { scroll-behavior: smooth; }
+
+      /* HERO */
+      .cs-hero{
+        background: #2733c7;
+        color: #f3f5f7;
+        padding: 72px 0;
+      }
+      .cs-hero__container{
+        min-height: 580px;
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .cs-hero__back{
+        display: inline-block;
+        color: rgba(243,245,247,0.75);
+        font-size: 14px;
+        text-decoration: none;
+        margin-bottom: 18px;
+      }
+      .cs-hero__back:hover{ color: rgba(243,245,247,0.95); }
+
+      .cs-hero__title{
+        font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+        font-weight: 700;
+        letter-spacing: -0.8px;
+        font-size: clamp(44px, 5.2vw, 78px);
+        line-height: 0.95;
+        margin: 0 0 18px;
+        text-transform: lowercase;
+      }
+
+      .cs-hero__subtitle{
+        color: rgba(243,245,247,0.8);
+        font-size: 18px;
+        line-height: 1.6;
+        margin: 0 0 26px;
+        max-width: 54ch;
+      }
+      .cs-hero__subtitle strong{ color: #ff7a1a; }
+
+      .cs-hero__meta{
+        margin: 0 0 28px;
+        display: grid;
+        gap: 14px;
+      }
+      .cs-hero__row{
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 14px;
+        align-items: baseline;
+      }
+      .cs-hero__row dt{
+        font-weight: 700;
+        color: rgba(243,245,247,0.92);
+      }
+      .cs-hero__row dd{
+        margin: 0;
+        color: rgba(243,245,247,0.72);
+      }
+
+      .cs-hero__cta{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 54px;
+        padding: 0 26px;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #0b0d10;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 10px 28px rgba(255, 122, 26, 0.25);
+        transition: transform 160ms ease, opacity 160ms ease;
+      }
+      .cs-hero__cta:hover{
+        transform: translateY(-1px);
+        opacity: 0.95;
+      }
+
+      .cs-hero__visual{
+        display: flex;
+        justify-content: flex-end;
+      }
+      .cs-hero__image{
+        width: min(520px, 100%);
+        height: auto;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 22px 60px rgba(0,0,0,0.45);
+        display: block;
+      }
+
+      @media (max-width: 900px){
+        .cs-hero{ padding: 54px 0; }
+        .cs-hero__container{ grid-template-columns: 1fr; gap: 28px; }
+        .cs-hero__visual{ justify-content: flex-start; }
+        .cs-hero__row{ grid-template-columns: 120px 1fr; }
+      }
+
+      /* TOC */
+      .toc{
+        background: #ffffff;
+        color: #0b0d10;
+        padding: 70px 0 60px;
+      }
+      .toc__container{
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+      .toc__grid{
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 56px;
+        align-items: start;
+      }
+      .toc__title{
+        display: inline-block;
+        text-decoration: none;
+        color: #0b0d10;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        font-size: 20px;
+        margin-bottom: 14px;
+        transform: translateY(0);
+        transition: transform 180ms ease;
+      }
+      .toc__title:hover{ transform: translateY(-2px); }
+
+      .toc__list{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 14px;
+      }
+      .toc__link{
+        text-decoration: none;
+        color: #0b0d10;
+        font-size: 16px;
+        line-height: 1.55;
+        font-weight: 500;
+        display: inline-block;
+        transform: translateY(0) scale(1);
+        transition: color 170ms ease, transform 170ms ease, font-weight 170ms ease;
+      }
+      .toc__link:hover{
+        color: #ff7a1a;
+        font-weight: 800;
+        transform: translateY(-1px) scale(1.03);
+      }
+
+      @media (max-width: 980px){
+        .toc__grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
+      }
+      @media (max-width: 560px){
+        .toc__grid{ grid-template-columns: 1fr; }
+      }
+
+      /* SECTION BANNER (full-bleed) */
+      .section-banner{ background: #ffffff; margin: 0; padding: 0; }
+      .section-banner__bg{
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        background: #2733c7; /* ECOLU blue */
+        padding: 90px 0;
+      }
+      .section-banner__content{
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+        text-align: center;
+      }
+      .section-banner__title{
+        margin: 0;
+        color: #ffffff;
+        font-weight: 800;
+        letter-spacing: -0.6px;
+        font-size: clamp(32px, 4.5vw, 56px);
+        line-height: 1.1;
+      }
+
+      /* CASE CONTENT */
+      .case-section{
+        background: #ffffff;
+        padding: 110px 0 140px;
+      }
+      .case-section__inner{
+        width: min(760px, 92vw);
+        margin: 0 auto;
+        text-align: left;
+      }
+      .case-section__eyebrow{
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 1.4px;
+        margin-bottom: 20px;
+        color: #0b0d10;
+      }
+      .case-section__title{
+        font-size: clamp(34px, 4vw, 48px);
+        font-weight: 800;
+        margin: 0 0 24px;
+        letter-spacing: -0.6px;
+        color: #0b0d10;
+      }
+      .case-section__subtitle{
+        margin: 34px 0 10px;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        color: #0b0d10;
+      }
+      .case-section__text{
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(11,13,16,0.82);
+      }
+      .case-section__text p{ margin: 0 0 22px; }
+      .case-section__text strong{ color: #0b0d10; font-weight: 700; }
+
+      .case-list{
+        margin: 0 0 22px;
+        padding-left: 20px;
+        color: rgba(11,13,16,0.82);
+        font-size: 18px;
+        line-height: 1.8;
+      }
+      .case-list li{ margin: 10px 0; }
+    </style>
+  </head>
+
+  <body>
+    <section class="cs-hero" id="top">
+      <div class="cs-hero__container">
+        <div class="cs-hero__content">
+          <a class="cs-hero__back" href="index.html">← Back</a>
+
+          <h1 class="cs-hero__title">ecolu</h1>
+
+          <p class="cs-hero__subtitle">
+            Case study placeholder for Ecolu. This is a clean template matching your VSR page.
+            Replace this subtitle later. Highlight something with <strong>orange</strong> if you want.
+          </p>
+
+          <dl class="cs-hero__meta">
+            <div class="cs-hero__row">
+              <dt>Project type:</dt>
+              <dd>Product concept + UI design</dd>
+            </div>
+            <div class="cs-hero__row">
+              <dt>Role:</dt>
+              <dd>Product designer</dd>
+            </div>
+            <div class="cs-hero__row">
+              <dt>Industry:</dt>
+              <dd>Sustainable shopping</dd>
+            </div>
+            <div class="cs-hero__row">
+              <dt>Tools:</dt>
+              <dd>Figma (placeholder)</dd>
+            </div>
+            <div class="cs-hero__row">
+              <dt>Duration:</dt>
+              <dd>2026 (placeholder)</dd>
+            </div>
+          </dl>
+
+          <a class="cs-hero__cta" href="#case-study">View case study</a>
+        </div>
+
+        <div class="cs-hero__visual">
+          <img
+            class="cs-hero__image"
+            src="assets/ecolu/hero-placeholder.png"
+            alt="Ecolu case study hero placeholder"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="toc" aria-label="Case study table of contents">
+      <div class="toc__container">
+        <div class="toc__grid">
+          <div class="toc__col">
+            <a class="toc__title" href="#discover">DISCOVER</a>
+            <ul class="toc__list">
+              <li><a class="toc__link" href="#context">Project context</a></li>
+              <li><a class="toc__link" href="#problem">The problem</a></li>
+            </ul>
+          </div>
+
+          <div class="toc__col">
+            <a class="toc__title" href="#define">DEFINE</a>
+            <ul class="toc__list">
+              <li><a class="toc__link" href="#goals">Goals</a></li>
+              <li><a class="toc__link" href="#scope">Scope</a></li>
+            </ul>
+          </div>
+
+          <div class="toc__col">
+            <a class="toc__title" href="#develop">DEVELOP</a>
+            <ul class="toc__list">
+              <li><a class="toc__link" href="#flows">Flows & IA</a></li>
+              <li><a class="toc__link" href="#ui">UI design</a></li>
+            </ul>
+          </div>
+
+          <div class="toc__col">
+            <a class="toc__title" href="#deliver">DELIVER</a>
+            <ul class="toc__list">
+              <li><a class="toc__link" href="#outcomes">Outcomes</a></li>
+              <li><a class="toc__link" href="#next">Next steps</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-banner" id="discover">
+      <div class="section-banner__bg">
+        <div class="section-banner__content">
+          <h2 class="section-banner__title" id="context">Project context</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section" id="case-study">
+      <div class="case-section__inner">
+        <span class="case-section__eyebrow">DISCOVER</span>
+        <h3 class="case-section__title" id="problem">The problem</h3>
+
+        <div class="case-section__text">
+          <p>
+            Placeholder text. Describe what Ecolu is and what user problem it solves.
+          </p>
+          <p>
+            Add constraints, audience, why it matters, and what “success” looks like.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-banner" id="define">
+      <div class="section-banner__bg">
+        <div class="section-banner__content">
+          <h2 class="section-banner__title">Define</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__inner">
+        <span class="case-section__eyebrow">DEFINE</span>
+        <h3 class="case-section__title" id="goals">Goals</h3>
+
+        <div class="case-section__text">
+          <ul class="case-list">
+            <li>Goal placeholder 1</li>
+            <li>Goal placeholder 2</li>
+            <li>Goal placeholder 3</li>
+          </ul>
+
+          <h4 class="case-section__subtitle" id="scope">Scope</h4>
+          <p>
+            What you designed: onboarding, category browsing, product details, etc.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-banner" id="develop">
+      <div class="section-banner__bg">
+        <div class="section-banner__content">
+          <h2 class="section-banner__title">Develop</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__inner">
+        <span class="case-section__eyebrow">DEVELOP</span>
+
+        <h3 class="case-section__title" id="flows">Flows & information architecture</h3>
+        <div class="case-section__text">
+          <p>
+            Placeholder. Add user flows, key screens, decisions, trade-offs.
+          </p>
+        </div>
+
+        <h3 class="case-section__title" id="ui">UI design</h3>
+        <div class="case-section__text">
+          <p>
+            Placeholder. Add your visual system, components, design system notes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-banner" id="deliver">
+      <div class="section-banner__bg">
+        <div class="section-banner__content">
+          <h2 class="section-banner__title">Deliver</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__inner">
+        <span class="case-section__eyebrow">DELIVER</span>
+
+        <h3 class="case-section__title" id="outcomes">Outcomes</h3>
+        <div class="case-section__text">
+          <p>Placeholder outcomes: what improved, what you learned.</p>
+        </div>
+
+        <h3 class="case-section__title" id="next">Next steps</h3>
+        <div class="case-section__text">
+          <ul class="case-list">
+            <li>Next step placeholder 1</li>
+            <li>Next step placeholder 2</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
