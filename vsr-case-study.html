@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VSR Case Study – Hero</title>
+
+    <style>
+      /* Base */
+      * {
+        box-sizing: border-box;
+      }
+      body{
+       margin: 0;
+       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+       background: #ffffff; /* light */
+       color: #0b0d10;      /* dark text default */
+       }
+
+      a {
+        color: inherit;
+      }
+
+      /* HERO: dark + vibrant, orange accents */
+      .cs-hero {
+        background: #0b0d10;
+        color: #f3f5f7;
+        padding: 72px 0;
+      }
+
+      .cs-hero__container {
+        min-height: 580px;
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr; /* text left, image right */
+        gap: 56px;
+        align-items: center;
+      }
+
+      .cs-hero__back {
+        display: inline-block;
+        color: rgba(243, 245, 247, 0.75);
+        font-size: 14px;
+        text-decoration: none;
+        margin-bottom: 18px;
+      }
+      .cs-hero__back:hover {
+        color: rgba(243, 245, 247, 0.95);
+      }
+
+      /* Optionally use an image wordmark instead of text */
+      .cs-hero__wordmark {
+        height: 44px;
+        width: auto;
+        display: block;
+        margin-bottom: 14px;
+      }
+
+      .cs-hero__title {
+        font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+        font-weight: 700;
+        letter-spacing: -0.8px;
+        font-size: clamp(44px, 5.2vw, 78px);
+        line-height: 0.95;
+        margin: 0 0 18px;
+      }
+
+      .cs-hero__subtitle {
+        color: rgba(243, 245, 247, 0.8);
+        font-size: 18px;
+        line-height: 1.6;
+        margin: 0 0 26px;
+        max-width: 54ch;
+      }
+      .cs-hero__subtitle strong {
+        color: #ff7a1a; /* orange highlight */
+      }
+
+      .cs-hero__meta {
+        margin: 0 0 28px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .cs-hero__row {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 14px;
+        align-items: baseline;
+      }
+
+      .cs-hero__row dt {
+        font-weight: 700;
+        color: rgba(243, 245, 247, 0.92);
+      }
+
+      .cs-hero__row dd {
+        margin: 0;
+        color: rgba(243, 245, 247, 0.72);
+      }
+
+      .cs-hero__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 54px;
+        padding: 0 26px;
+        border-radius: 999px;
+        background: #ff7a1a; /* orange button */
+        color: #0b0d10;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 10px 28px rgba(255, 122, 26, 0.25);
+        transition: transform 160ms ease, opacity 160ms ease;
+      }
+      .cs-hero__cta:hover {
+        transform: translateY(-1px);
+        opacity: 0.95;
+      }
+
+      .cs-hero__visual {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .cs-hero__image {
+        width: min(520px, 100%);
+        height: auto;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+        display: block;  
+      }
+
+
+      @media (max-width: 900px) {
+        .cs-hero {
+          padding: 54px 0;
+        }
+        .cs-hero__container {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .cs-hero__visual {
+          justify-content: flex-start;
+        }
+        .cs-hero__row {
+          grid-template-columns: 120px 1fr;
+        }
+      } /* ✅ make sure this closing brace exists */
+
+
+    html { scroll-behavior: smooth; }
+
+      /* TABLE OF CONTENTS */
+.toc{
+  background: #ffffff;
+  color: #0b0d10;
+  padding: 70px 0 60px;
+}
+
+.toc__container{
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+}
+
+.toc__grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 56px;
+  align-items: start;
+}
+
+/* Title links (no yellow underline) */
+.toc__title{
+  display: inline-block;
+  text-decoration: none;
+  color: #0b0d10;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  font-size: 20px;
+  margin-bottom: 14px;
+  transform: translateY(0);
+  transition: transform 180ms ease;
+}
+
+/* Title hover: motion only, no color change */
+.toc__title:hover{
+  transform: translateY(-2px);
+}
+
+/* List of links */
+.toc__list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.toc__link{
+  text-decoration: none;
+  color: #0b0d10;           /* black links */
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 500;
+  display: inline-block;
+  transform: translateY(0) scale(1);
+  transition: color 170ms ease, transform 170ms ease, font-weight 170ms ease;
+}
+
+/* Link hover: orange + bigger + bolder + slight motion */
+.toc__link:hover{
+  color: #ff7a1a;
+  font-weight: 800;
+  transform: translateY(-1px) scale(1.03);
+}
+
+/* Make it stack nicely on small screens */
+@media (max-width: 980px){
+  .toc__grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px;
+  }
+}
+@media (max-width: 560px){
+  .toc__grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FULL-WIDTH GREEN SECTION HEADER */
+.section-banner{
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* full-bleed background */
+.section-banner__bg{
+  width: 100vw;
+  margin-left: calc(50% - 50vw); /* THIS makes it go edge-to-edge */
+  background:#1a25c5; /* green */
+  padding: 90px 0;
+}
+
+/* centered content */
+.section-banner__content{
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-banner__title{
+  margin: 0;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.1;
+}
+
+/* Example content section styling */
+.content{
+  background: #ffffff;
+  color: #0b0d10;
+  padding: 34px 0 80px;
+}
+
+.content__container{
+  width: min(900px, 92vw);
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(11,13,16,0.82);
+}
+
+
+
+/* CASE CONTENT SECTION */
+.case-section{
+  background: #ffffff;
+  padding: 110px 0 140px; /* lots of white space */
+}
+
+.case-section__inner{
+  width: min(760px, 92vw); /* narrow column for readability */
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* small label like in reference */
+.case-section__eyebrow{
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  margin-bottom: 20px;
+  color: #0b0d10;
+}
+
+/* big section title */
+.case-section__title{
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 800;
+  margin: 0 0 36px;
+  letter-spacing: -0.6px;
+  color: #0b0d10;
+}
+
+/* body text */
+.case-section__text{
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(11,13,16,0.82);
+}
+
+.case-section__text p{
+  margin: 0 0 26px;
+}
+
+.case-section__text strong{
+  color: #0b0d10;
+  font-weight: 700;
+}
+
+
+
+
+
+
+/* Add this to your <style> (or keep in the same CSS file) */
+
+/* List styling that matches your "problem" typography */
+.case-list{
+  margin: 0 0 26px;
+  padding-left: 20px;
+  color: rgba(11,13,16,0.82);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.case-list li{
+  margin: 10px 0;
+}
+
+
+
+
+
+
+
+
+    </style>
+  </head>
+
+  <body>
+    <section class="cs-hero" id="top">
+      <div class="cs-hero__container">
+        <!-- LEFT: Text -->
+        <div class="cs-hero__content">
+          <a class="cs-hero__back" href="index.html">← Back</a>
+
+          <!-- If you have a wordmark logo image, uncomment this and set the src -->
+          <!-- <img class="cs-hero__wordmark" src="assets/your-wordmark.svg" alt="Your wordmark" /> -->
+
+          <h1 class="cs-hero__title">vsr redesign</h1>
+
+          <p class="cs-hero__subtitle">
+            A modern refresh of TU Chemnitz VSR professorship pages, improving
+            readability and consistency within a fixed university layout using
+            <strong>orange highlights</strong> and clear hierarchy.
+          </p>
+
+          <dl class="cs-hero__meta">
+            <div class="cs-hero__row">
+              <dt>Project type:</dt>
+              <dd>Responsive website redesign (within CMS constraints)</dd>
+            </div>
+
+            <div class="cs-hero__row">
+              <dt>Role:</dt>
+              <dd>UX/UI Designer (design + implementation)</dd>
+            </div>
+
+            <div class="cs-hero__row">
+              <dt>Industry:</dt>
+              <dd>Higher education, research</dd>
+            </div>
+
+            <div class="cs-hero__row">
+              <dt>Tools:</dt>
+              <dd>Figma, HTML/CSS, Illustrator, Photoshop</dd>
+            </div>
+
+            <div class="cs-hero__row">
+              <dt>Duration:</dt>
+              <dd>2023–2025</dd>
+            </div>
+          </dl>
+
+          <a class="cs-hero__cta" href="#case-study">View case study</a>
+        </div>
+
+        <!-- RIGHT: Image -->
+        <div class="cs-hero__visual">
+          <!-- Replace this path with your own image later -->
+          <img
+            class="cs-hero__image"
+            src="assets/vsr/hero-laptop-placeholder.png"
+            alt="Case study hero visual placeholder"
+          />
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+    <!-- TABLE OF CONTENTS (white background) -->
+<section class="toc" aria-label="Case study table of contents">
+  <div class="toc__container">
+    <div class="toc__grid">
+      <!-- Column 1 -->
+      <div class="toc__col">
+        <a class="toc__title" href="#discover">DISCOVER</a>
+        <ul class="toc__list">
+          <li><a class="toc__link" href="#context">Project context and constraints</a></li>
+          <li><a class="toc__link" href="#pain-points">Problems in the legacy pages</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="toc__col">
+        <a class="toc__title" href="#define">DEFINE</a>
+        <ul class="toc__list">
+          <li><a class="toc__link" href="#goals">Goals and success criteria</a></li>
+          <li><a class="toc__link" href="#approach">Design approach and decisions</a></li>
+          <li><a class="toc__link" href="#info-structure">Information structure improvements</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="toc__col">
+        <a class="toc__title" href="#develop">DEVELOP</a>
+        <ul class="toc__list">
+          <li><a class="toc__link" href="#visual-system">Visual system and UI patterns</a></li>
+          <li><a class="toc__link" href="#key-pages">Key page redesigns (Contact, Visiting, Education)</a></li>
+          <li><a class="toc__link" href="#interaction">Interactions (FAQ image expand)</a></li>
+          <li><a class="toc__link" href="#implementation">Implementation notes (HTML/CSS within template)</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4 -->
+      <div class="toc__col">
+        <a class="toc__title" href="#deliver">DELIVER</a>
+        <ul class="toc__list">
+          <li><a class="toc__link" href="#outcomes">Outcomes and improvements</a></li>
+          <li><a class="toc__link" href="#next">What I would improve next</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG GREEN SECTION HEADER (like your screenshot) -->
+<section class="section-banner" id="discover">
+  <div class="section-banner__bg">
+    <div class="section-banner__content">
+      <h2 class="section-banner__title">Project context and constraints</h2>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- DISCOVER / PROBLEM SECTION -->
+<section class="case-section" id="problem">
+  <div class="case-section__inner">
+    <span class="case-section__eyebrow">DISCOVER</span>
+
+    <h3 class="case-section__title">The problem</h3>
+
+    <div class="case-section__text">
+      <p>
+        The VSR professorship pages at TU Chemnitz were built on an outdated
+        university-wide template that limited layout flexibility, visual
+        hierarchy, and interaction patterns. Over time, the pages became
+        text-heavy, visually inconsistent, and difficult for students and
+        external visitors to scan efficiently.
+      </p>
+
+      <p>
+        Key information such as contact details, course guidance, exam
+        procedures, and research resources was buried in long paragraphs,
+        low-quality images, and unstructured lists. Important steps were often
+        explained only through dense text or large screenshots, making the
+        content feel overwhelming rather than supportive.
+      </p>
+
+      <p>
+        Because the professorship was required to follow TU Chemnitz’s global
+        CMS structure, neither the overall layout nor the wording of the content
+        could be changed. The challenge was therefore to significantly improve
+        clarity, readability, and usability <strong>within strict technical and
+        institutional constraints</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- =========================
+     DISCOVER → The users
+     (Add this right after your "The problem" section)
+========================= -->
+<section class="case-section" id="users">
+  <div class="case-section__inner">
+    <h4 class="case-section__title">The users</h4>
+
+    <div class="case-section__text">
+      <p>
+        The primary users were <strong>students</strong> who regularly visited
+        education, exams, guidelines, and FAQ pages to find clear instructions
+        quickly. Secondary users included <strong>prospective students</strong>,
+        <strong>research partners</strong>, and <strong>university staff</strong>
+        who needed reliable contact and location information.
+      </p>
+
+      <p>
+        Their main need was simple: <strong>fast, scannable access</strong> to
+        the right information without reading long paragraphs. Many pages were
+        accessed under time pressure, especially before exams or during course
+        planning.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+     DISCOVER → Constraints & limitations
+========================= -->
+<section class="case-section" id="constraints">
+  <div class="case-section__inner">
+    <h4 class="case-section__title">Constraints & limitations</h4>
+
+    <div class="case-section__text">
+      <p>
+        The redesign took place within the TU Chemnitz university CMS, which
+        imposed strict layout, branding, and structural limitations.
+      </p>
+
+      <ul class="case-list">
+        <li>Fixed university-wide layout and navigation</li>
+        <li>Limited editable content area</li>
+        <li>Text content could not be rewritten or shortened</li>
+        <li>Academic terminology and structure had to remain unchanged</li>
+        <li>Visual alignment with TU Chemnitz branding was required</li>
+      </ul>
+
+      <p>
+        As a result, the focus was on improving usability through
+        <strong>visual hierarchy, spacing, grouping, and interaction patterns</strong>
+        rather than changing content or layout foundations.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- =========================
+     GREEN SECTION 2
+     Problems in the legacy pages
+========================= -->
+<section class="section-banner" id="legacy-problems">
+  <div class="section-banner__bg">
+    <div class="section-banner__content">
+      <h2 class="section-banner__title">Problems in the legacy pages</h2>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT UNDER GREEN SECTION 2 -->
+<section class="case-section">
+  <div class="case-section__inner">
+
+    <!-- Level 2 -->
+    <h3 class="case-section__title">The problem space</h3>
+
+    <div class="case-section__text">
+      <p>
+        Although the VSR professorship pages contained valuable academic
+        information, the way this content was presented created significant
+        usability challenges. Over time, the pages had evolved without a
+        consistent visual or structural system, forcing users to read large
+        amounts of text to locate even basic information.
+      </p>
+    </div>
+
+    <!-- Level 3 -->
+    <h4 class="case-section__subtitle">Poor scannability</h4>
+    <div class="case-section__text">
+      <p>
+        Most pages relied on long, uninterrupted paragraphs with minimal visual
+        separation. Headings were not clearly differentiated from body text, and
+        related information was rarely grouped together.
+      </p>
+    </div>
+
+    <h4 class="case-section__subtitle">Inconsistent visual language</h4>
+    <div class="case-section__text">
+      <p>
+        Icons varied in style, colors were used without a clear system, and
+        images differed widely in quality and resolution. This inconsistency
+        reduced clarity and weakened the professional appearance of the
+        professorship pages.
+      </p>
+    </div>
+
+    <h4 class="case-section__subtitle">Information overload</h4>
+    <div class="case-section__text">
+      <p>
+        Important actions and instructions were often embedded inside dense
+        paragraphs. Step-based processes were presented as continuous text, and
+        large screenshots were displayed inline by default, creating visual
+        clutter and increasing cognitive load.
+      </p>
+    </div>
+
+    <h4 class="case-section__subtitle">Low perceived quality</h4>
+    <div class="case-section__text">
+      <p>
+        Outdated banners, low-resolution diagrams, and old campus maps negatively
+        affected how the pages were perceived. Even though the content itself
+        was reliable, the visual presentation reduced trust and engagement.
+      </p>
+    </div>
+
+    <!-- Level 2 -->
+    <h3 class="case-section__title case-section__title--tight">Why this mattered</h3>
+    <div class="case-section__text">
+      <p>
+        These issues were particularly impactful for students, who often
+        accessed the pages under time pressure. Poor scannability and visual
+        overload directly affected their ability to prepare, plan, and make
+        informed decisions efficiently.
+      </p>
+    </div>
+
+    <!-- BEFORE SCREENSHOTS -->
+    <div class="legacy-shots">
+      <figure class="legacy-shot">
+        <img src="assets/vsr/old-education.png" alt="Old education page with dense text">
+        <figcaption>
+          Legacy education page with dense text blocks and limited visual hierarchy.
+        </figcaption>
+      </figure>
+
+      <figure class="legacy-shot">
+        <img src="assets/vsr/old-visiting-map.png" alt="Old visiting page with low resolution map">
+        <figcaption>
+          Low-resolution campus map and unclear visual emphasis on the legacy “Visiting us” page.
+        </figcaption>
+      </figure>
+
+      <figure class="legacy-shot legacy-shot--wide">
+        <img src="assets/vsr/old-faq.png" alt="Old FAQ page with inline screenshots">
+        <figcaption>
+          Step-based instructions shown with large inline screenshots, creating visual clutter.
+        </figcaption>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- =========================
+     DEFINE (Banner)
+========================= -->
+<section class="section-banner" id="define">
+  <div class="section-banner__bg">
+    <div class="section-banner__content">
+      <h2 class="section-banner__title">Define</h2>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+     DEFINE (Content)
+========================= -->
+<section class="case-section">
+  <div class="case-section__inner">
+    <span class="case-section__eyebrow">DEFINE</span>
+
+    <!-- 1) Goals -->
+    <h3 class="case-section__title" id="goals">Goals and success criteria</h3>
+
+    <div class="case-section__text">
+      <p>
+        Based on the identified usability issues and institutional constraints,
+        the redesign focused on improving how information is structured, accessed,
+        and perceived rather than changing the content itself.
+      </p>
+
+      <h4 class="case-section__subtitle">Primary goals</h4>
+      <ul class="case-list case-list--compact">
+        <li>Improve readability and scannability of content-heavy academic pages</li>
+        <li>Help students locate relevant information without reading entire pages</li>
+        <li>Create a consistent visual and structural system across all VSR pages</li>
+        <li>Reduce cognitive load for task-oriented pages (exams, guidelines, course info)</li>
+        <li>Maintain full compatibility with TU Chemnitz CMS and branding rules</li>
+      </ul>
+
+      <h4 class="case-section__subtitle">Success criteria</h4>
+      <ul class="case-list case-list--compact">
+        <li>Key sections and actions are recognizable within seconds of scanning</li>
+        <li>Related information is grouped and visually separated</li>
+        <li>Patterns (headings, icons, layouts) stay consistent across pages</li>
+        <li>Important instructions are easy to find without excessive scrolling</li>
+        <li>The redesign feels modern while respecting institutional constraints</li>
+      </ul>
+    </div>
+
+    <!-- 2) Approach -->
+    <h3 class="case-section__title case-section__title--tight" id="approach">
+      Design approach and decisions
+    </h3>
+
+    <div class="case-section__text">
+      <p>
+        Given the fixed university-wide template, the redesign followed a
+        <strong>structure-first UX approach</strong>. Instead of attempting a full
+        visual overhaul, the focus was placed on how users scan, navigate, and
+        complete tasks on information-heavy pages.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Strengthened hierarchy using spacing, headings, and grouping</li>
+        <li>Applied repeatable patterns to create predictability across pages</li>
+        <li>Added visual cues to support dense text without rewriting content</li>
+        <li>Designed within the existing template rather than fighting it</li>
+        <li>Treated constraints as boundaries that guide consistent decisions</li>
+      </ul>
+    </div>
+
+    <!-- 3) Info structure -->
+    <h3 class="case-section__title case-section__title--tight" id="info-structure">
+      Information structure improvements
+    </h3>
+
+    <div class="case-section__text">
+      <p>
+        A major part of the redesign focused on reorganizing information visually
+        so students and visitors could understand each page quickly and move
+        directly to what they need.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Separated content into scannable sections with clear anchors</li>
+        <li>Grouped related information into recognizable blocks and cards</li>
+        <li>Reduced perceived density through spacing and consistent layouts</li>
+        <li>Improved wayfinding by highlighting key actions and decision points</li>
+        <li>Standardized section patterns across all VSR pages for consistency</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- =========================
+     DEVELOP (Banner)
+========================= -->
+<section class="section-banner" id="develop">
+  <div class="section-banner__bg">
+    <div class="section-banner__content">
+      <h2 class="section-banner__title">Develop</h2>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+     DEVELOP → Visual system & UI patterns
+========================= -->
+<section class="case-section" id="visual-system">
+  <div class="case-section__inner">
+    <span class="case-section__eyebrow">DEVELOP</span>
+
+    <h3 class="case-section__title">Visual system and UI patterns</h3>
+
+    <div class="case-section__text">
+      <p>
+        To modernize the VSR pages within the fixed TU Chemnitz CMS layout, I
+        created a lightweight visual system that improves consistency, hierarchy,
+        and perceived quality without changing the underlying structure.
+      </p>
+
+      <h4 class="case-section__subtitle">Color and identity</h4>
+      <p>
+        I aligned the redesign with the university’s global header by using TU
+        Chemnitz green for structure and navigation-related elements, while using
+        the VSR signature orange for emphasis and key highlights. This kept the
+        pages visually integrated with the university platform while giving the
+        professorship a recognizable identity.
+      </p>
+
+      <h4 class="case-section__subtitle">Typography and hierarchy</h4>
+      <p>
+        Since text could not be rewritten, readability improvements came from
+        hierarchy: clearer headings, more spacing between sections, and stronger
+        grouping. The goal was to help users scan first, then read only what is
+        relevant.
+      </p>
+
+      <h4 class="case-section__subtitle">Reusable UI patterns</h4>
+      <p>
+        I introduced consistent patterns across pages, such as section blocks,
+        card-like groupings, and clear call-to-action links. Using repeatable
+        layouts reduced cognitive load because users could predict where to find
+        information on different pages.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Consistent icon style to create visual coherence across pages</li>
+        <li>Spacing and grouping to separate topics and reduce perceived density</li>
+        <li>Card-style layouts for contact and travel information</li>
+        <li>Clear CTA links for profiles, downloads, and next steps</li>
+        <li>Progressive disclosure pattern for long step-based instructions</li>
+      </ul>
+    </div>
+
+    <!-- Visual 1: Style tile (wide) -->
+    <figure class="case-visual">
+      <img
+        class="case-visual__img"
+        src="assets/vsr/visual-system-style-tile.png"
+        alt="Style tile showing color palette, typography, and icon style"
+      />
+      <figcaption class="case-visual__cap">
+        Visual system tile (placeholder): palette, typography hierarchy, and icon
+        style used to keep all pages consistent inside the TU Chemnitz template.
+      </figcaption>
+    </figure>
+
+    <!-- Visuals 2–3: Two-up pattern snapshots -->
+    <div class="case-visual-grid">
+      <figure class="case-visual">
+        <img
+          class="case-visual__img"
+          src="assets/vsr/pattern-section-blocks.png"
+          alt="UI pattern placeholder: section blocks and grouping"
+        />
+        <figcaption class="case-visual__cap">
+          UI pattern (placeholder): section blocks and spacing to improve scanning.
+        </figcaption>
+      </figure>
+
+      <figure class="case-visual">
+        <img
+          class="case-visual__img"
+          src="assets/vsr/pattern-links-buttons.png"
+          alt="UI pattern placeholder: links and call-to-action treatment"
+        />
+        <figcaption class="case-visual__cap">
+          UI pattern (placeholder): CTA links and consistent emphasis for key actions.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================
+     DEVELOP → Key page redesigns
+========================= -->
+<section class="case-section" id="key-pages">
+  <div class="case-section__inner">
+    <span class="case-section__eyebrow">DEVELOP</span>
+
+    <h3 class="case-section__title">
+      Key page redesigns
+    </h3>
+
+    <div class="case-section__text">
+      <p>
+        Instead of redesigning isolated screens, the focus was on applying the
+        visual system consistently across the most frequently used VSR pages.
+        Priority was given to pages where students experienced the highest
+        friction and time pressure.
+      </p>
+
+      <h4 class="case-section__subtitle">Contact page</h4>
+      <p>
+        The legacy contact page presented information as a long list, making it
+        difficult to distinguish roles and find the right person quickly.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Introduced clear grouping for roles and responsibilities</li>
+        <li>Applied card-style layouts for better separation</li>
+        <li>Added direct profile links for faster access to detailed information</li>
+        <li>Improved hierarchy using spacing and consistent emphasis</li>
+      </ul>
+    </div>
+
+    <!-- Contact page before/after -->
+    <div class="case-visual-grid">
+      <figure class="case-visual">
+        <img
+          class="case-visual__img"
+          src="assets/vsr/contact-before.png"
+          alt="Legacy contact page layout"
+        />
+        <figcaption class="case-visual__cap">
+          Before: Contact information presented as a dense list with limited hierarchy.
+        </figcaption>
+      </figure>
+
+      <figure class="case-visual">
+        <img
+          class="case-visual__img"
+          src="assets/vsr/contact-after.png"
+          alt="Redesigned contact page layout"
+        />
+        <figcaption class="case-visual__cap">
+          After: Structured layout with clear roles, spacing, and direct profile links.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="case-section__text">
+      <h4 class="case-section__subtitle">Visiting us page</h4>
+      <p>
+        The original “Visiting us” page relied on a low-resolution map and
+        unstructured travel information, which made orientation difficult for
+        external visitors.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Redesigned the campus map manually for clarity and resolution</li>
+        <li>Used VSR orange to highlight relevant buildings and routes</li>
+        <li>Structured travel information by transport type</li>
+        <li>Improved visual clarity and spatial understanding</li>
+      </ul>
+    </div>
+
+    <!-- Visiting page before/after -->
+    <div class="case-visual-grid">
+      <figure class="case-visual">
+        <img
+          class="case-visual__img"
+          src="assets/vsr/visiting-before.png"
+          alt="Legacy visiting page with low-resolution map"
+        />
+        <figcaption class="case-visual__cap">
+          Before: Low-resolution map and visually inconsistent color usage.
+        </figcaption>
+      </figure>
+
+      <figure class="case-visual">
+        <img
+          class="case-visual__img"
+          src="assets/vsr/visiting-after.png"
+          alt="Redesigned visiting page with custom map"
+        />
+        <figcaption class="case-visual__cap">
+          After: Custom-drawn map and structured travel information for faster orientation.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="case-section__text">
+      <h4 class="case-section__subtitle">Education page</h4>
+      <p>
+        Previously, the education page consisted almost entirely of text with
+        outdated icons and no visual entry points.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Added a custom banner to introduce the page visually</li>
+        <li>Designed a custom illustration to support the academic theme</li>
+        <li>Improved hierarchy and spacing between sections</li>
+        <li>Highlighted key actions relevant to students</li>
+      </ul>
+    </div>
+
+    <!-- Education page before/after -->
+    <div class="case-visual-grid">
+      <figure class="case-visual">
+        <img
+          class="case-visual__img"
+          src="assets/vsr/education-before.png"
+          alt="Legacy education page with text-heavy layout"
+        />
+        <figcaption class="case-visual__cap">
+          Before: Text-heavy layout with limited visual guidance.
+        </figcaption>
+      </figure>
+
+      <figure class="case-visual">
+        <img
+          class="case-visual__img"
+          src="assets/vsr/education-after.png"
+          alt="Redesigned education page with banner and illustration"
+        />
+        <figcaption class="case-visual__cap">
+          After: Visual introduction and improved hierarchy without changing content.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- =========================
+     DEVELOP → Interactions
+========================= -->
+<section class="case-section" id="interaction">
+  <div class="case-section__inner">
+    <span class="case-section__eyebrow">DEVELOP</span>
+
+    <h3 class="case-section__title">
+      Interactions (FAQ image expand)
+    </h3>
+
+    <div class="case-section__text">
+      <p>
+        On FAQ and exam-related pages, step-by-step instructions were previously
+        displayed as dense text accompanied by large inline screenshots. This
+        created visual clutter and made it difficult to focus on individual steps.
+      </p>
+
+      <p>
+        To address this, I introduced a progressive disclosure interaction that
+        reveals screenshots only when users actively request them.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Converted steps into clearly numbered sequences</li>
+        <li>Moved screenshots behind click-based interactions</li>
+        <li>Reduced visual noise on initial page load</li>
+        <li>Allowed users to focus on one step at a time</li>
+      </ul>
+    </div>
+
+    <!-- Interaction example -->
+    <figure class="case-visual">
+      <img
+        class="case-visual__img"
+        src="assets/vsr/faq-interaction.png"
+        alt="FAQ interaction showing expandable images"
+      />
+      <figcaption class="case-visual__cap">
+        Progressive disclosure interaction: screenshots appear only when a step
+        is expanded.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+
+<!-- =========================
+     DEVELOP → Implementation notes
+========================= -->
+<section class="case-section" id="implementation">
+  <div class="case-section__inner">
+    <span class="case-section__eyebrow">DEVELOP</span>
+
+    <h3 class="case-section__title">
+      Implementation notes
+    </h3>
+
+    <div class="case-section__text">
+      <p>
+        The redesign was implemented directly within the existing TU Chemnitz CMS,
+        which required close alignment between design decisions and technical
+        feasibility.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Worked within a fixed HTML structure and predefined content areas</li>
+        <li>Used custom CSS to improve spacing, grouping, and visual hierarchy</li>
+        <li>Ensured consistency across all VSR pages using shared patterns</li>
+        <li>Balanced visual improvements with performance and maintainability</li>
+      </ul>
+
+      <p>
+        This approach ensured that the redesigned pages could be maintained by
+        the professorship without introducing fragile or complex dependencies.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- =========================
+     DELIVER → Outcomes and improvements
+========================= -->
+<section class="case-section" id="outcomes">
+  <div class="case-section__inner">
+    <span class="case-section__eyebrow">DELIVER</span>
+
+    <h3 class="case-section__title">
+      Outcomes and improvements
+    </h3>
+
+    <div class="case-section__text">
+      <p>
+        The redesign significantly improved the clarity and usability of the VSR
+        professorship pages while fully respecting the technical and institutional
+        constraints of the TU Chemnitz platform.
+      </p>
+
+      <ul class="case-list case-list--compact">
+        <li>Improved scannability across all pages through clearer hierarchy and spacing</li>
+        <li>Reduced visual clutter by restructuring dense content and hiding non-essential elements</li>
+        <li>Created a consistent visual language across all VSR pages</li>
+        <li>Improved wayfinding for students, especially on exams and guidelines pages</li>
+        <li>Modernized the perceived quality of the professorship website</li>
+      </ul>
+
+      <p>
+        Although no formal usability testing was conducted, feedback from students
+        and staff indicated that information was easier to find and pages felt
+        clearer and more structured than before.
+      </p>
+
+      <p>
+        The redesign has been fully implemented within the existing CMS and is
+        actively used by students and staff as part of the TU Chemnitz website.
+      </p>
+    </div>
+  </div>
+</section>
+ 
+
+  </body>
+</html>
