@@ -378,7 +378,7 @@ html, body {
 /* Replace this placeholder with your <img> (see HTML below) */
 .vsr-feature__media {
   position: relative;
-  width: 320px;
+  width: 260px;
   max-width: 92%;
   transform: rotate(-15deg);
   z-index: 2;
@@ -556,8 +556,8 @@ html, body {
 
 .ecolu-feature__yellow-shape {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   background-color: #fdd835;
   border-radius: 30px;
   transform: rotate(-15deg);
@@ -566,7 +566,7 @@ html, body {
 
 .ecolu-feature__media {
   position: relative;
-  width: 320px;
+  width: 260px;
   max-width: 92%;
   transform: rotate(-15deg);
   z-index: 2;
@@ -608,8 +608,8 @@ box-shadow: none;
 
 .saas-feature__shape {
   position: absolute;
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 200px;
   background-color: #ffffff;
   border-radius: 30px;
   transform: rotate(-15deg);
@@ -618,7 +618,7 @@ box-shadow: none;
 
 .saas-feature__media {
   position: relative;
-  width: 320px;
+  width: 260px;
   max-width: 92%;
   transform: rotate(-15deg);
   z-index: 2;
