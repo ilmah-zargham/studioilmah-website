@@ -350,7 +350,60 @@
 }
 
 
+/* image and video in hero*/
 
+.hero-mockup {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The Mockup Magic */
+/* container */
+.laptop-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* laptop frame */
+.laptop-frame-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* screen mask (THIS fixes overflow) */
+.laptop-screen {
+  position: absolute;
+  
+
+  /* 🔧 TUNE THESE VALUES */
+  top: 11%;
+  left: 15%;
+  width: 68%;
+  height: 75%;
+  background: #0b0d10;          /* fills empty space if contain adds bars */
+  overflow: hidden;          /* ✅ CLIPS video */
+  border-radius: 10px;       /* soft screen corners */
+  z-index: 2;
+}
+
+
+/* video */
+.mockup-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  object-position: center;   /* keep centered */
+  border-radius: 10px;       /* soft screen corners */
+
+}
 
 
 
@@ -408,15 +461,24 @@
         </div>
 
         <!-- RIGHT: Image -->
-        <div class="cs-hero__visual">
-          <!-- Replace this path with your own image later -->
-          <img
-            class="cs-hero__image"
-            src="assets/vsr/hero-laptop-placeholder.png"
-            alt="Case study hero visual placeholder"
-          />
-        </div>
-      </div>
+        <div class="hero-mockup">
+  <div class="laptop-container">
+
+    <div class="laptop-screen">
+      <video class="mockup-video" autoplay loop muted playsinline>
+        <source src="assets/vsr-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <img
+      src="assets/laptop-frame.png"
+      alt="Laptop Frame"
+      class="laptop-frame-img"
+    />
+
+  </div>
+</div>
+        
     </section>
 
 
@@ -1156,4 +1218,5 @@
 
   </body>
 </html>
+
 
