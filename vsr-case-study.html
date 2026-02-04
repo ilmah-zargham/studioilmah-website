@@ -19,6 +19,25 @@ html, body {
   width: 100%;
   overflow-x: hidden;   /* safe fallback */
 }
+      /* FULL-WIDTH SECTION BANNER (no 100vw overflow) */
+.section-banner {
+  background: #1a25c5;  /* move the blue background here */
+  padding: 90px 0;
+}
+
+.section-banner__bg {
+  width: 100%;
+  margin-left: 0;
+  background: transparent; /* not needed anymore */
+  padding: 0;              /* not needed anymore */
+}
+
+.section-banner__content {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  text-align: center;
+}
+      
       
       body{
        margin: 0;
@@ -1225,6 +1244,7 @@ html, body {
 
   </body>
 </html>
+
 
 
 
