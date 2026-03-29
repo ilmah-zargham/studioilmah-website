@@ -8,37 +8,12 @@
     <link rel="icon" type="image/png" href="assets/faviconwhite.png">
 <link rel="apple-touch-icon" href="assets/faviconwhite.png">
 
+
     <style>
       /* Base */
       * {
         box-sizing: border-box;
       }
-
-      /* Prevent horizontal swipe on mobile */
-html, body {
-  width: 100%;
-  overflow-x: hidden;   /* safe fallback */
-}
-      /* FULL-WIDTH SECTION BANNER (no 100vw overflow) */
-.section-banner {
-  background: #1a25c5;  /* move the blue background here */
-  padding: 90px 0;
-}
-
-.section-banner__bg {
-  width: 100%;
-  margin-left: 0;
-  background: transparent; /* not needed anymore */
-  padding: 0;              /* not needed anymore */
-}
-
-.section-banner__content {
-  width: min(1120px, 92vw);
-  margin: 0 auto;
-  text-align: center;
-}
-      
-      
       body{
        margin: 0;
        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -376,6 +351,7 @@ html, body {
 }
 
 
+
 /* image and video in hero*/
 
 .hero-mockup {
@@ -432,6 +408,69 @@ html, body {
 }
 
 
+/* Icon grid image sizing (centered + not too big) */
+.case-visual--icon-grid{
+  text-align: center; /* centers caption too */
+}
+
+.case-visual--icon-grid .case-visual__img{
+  width: min(680px, 100%);  /* change 680px to your preferred max size */
+  height: auto;
+  display: block;
+  margin: 0 auto;          /* centers the image */
+}
+
+
+
+/* =========================
+   CASE VISUALS (global)
+========================= */
+
+/* Default figure spacing */
+.case-visual{
+  margin: 34px 0 0;
+}
+
+/* Main images: responsive, centered, not massive */
+.case-visual__img{
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+
+  /* Optional: make screenshots feel polished */
+  border-radius: 18px;
+  box-shadow: 0 18px 46px rgba(0,0,0,0.10);
+}
+
+/* Caption style (if not already defined) */
+.case-visual__cap{
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(11,13,16,0.68);
+}
+
+/* Two-up layout for before/after */
+.case-visual-grid{
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+/* Make two-up stack on small screens */
+@media (max-width: 820px){
+  .case-visual-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Optional: cap screenshot width so it doesn’t feel too huge in single-column */
+.case-visual--narrow .case-visual__img{
+  width: min(760px, 100%);
+}
 
 
 
@@ -487,7 +526,8 @@ html, body {
         </div>
 
         <!-- RIGHT: Image -->
-        <div class="hero-mockup">
+  
+      <div class="hero-mockup">
   <div class="laptop-container">
 
     <div class="laptop-screen">
@@ -504,7 +544,9 @@ html, body {
 
   </div>
 </div>
-        
+
+</section>
+
     </section>
 
 
@@ -542,6 +584,7 @@ html, body {
         <ul class="toc__list">
           <li><a class="toc__link" href="#visual-system">Visual system and UI patterns</a></li>
           <li><a class="toc__link" href="#key-pages">Key page redesigns (Contact, Visiting, Education)</a></li>
+          <li><a class="toc__link" href="#icon-system">Course and project icon system</a></li>
           <li><a class="toc__link" href="#interaction">Interactions (FAQ image expand)</a></li>
           <li><a class="toc__link" href="#implementation">Implementation notes (HTML/CSS within template)</a></li>
         </ul>
@@ -889,7 +932,6 @@ html, body {
 ========================= -->
 <section class="case-section" id="visual-system">
   <div class="case-section__inner">
-    <span class="case-section__eyebrow">DEVELOP</span>
 
     <h3 class="case-section__title">Visual system and UI patterns</h3>
 
@@ -980,7 +1022,6 @@ html, body {
 ========================= -->
 <section class="case-section" id="key-pages">
   <div class="case-section__inner">
-    <span class="case-section__eyebrow">DEVELOP</span>
 
     <h3 class="case-section__title">
       Key page redesigns
@@ -1013,7 +1054,7 @@ html, body {
       <figure class="case-visual">
         <img
           class="case-visual__img"
-          src="assets/vsr/contact-before.png"
+          src="assets/vsr/contact-before.jpg"
           alt="Legacy contact page layout"
         />
         <figcaption class="case-visual__cap">
@@ -1116,6 +1157,41 @@ html, body {
   </div>
 </section>
 
+<!-- =========================
+     DEVELOP → Course and project icon system
+     (Matches your existing case-section styling)
+========================= -->
+<section class="case-section" id="icon-system">
+  <div class="case-section__inner">
+
+    <h3 class="case-section__title case-section__title--tight">
+      Course and project icon system
+    </h3>
+
+    <div class="case-section__text">
+      <p>
+        To support faster scanning and visual consistency across education and student project pages,
+        I designed a unified icon system for VSR courses and project categories.
+        The icons fit seamlessly into the fixed TU Chemnitz CMS layout.
+      </p>
+    </div>
+
+    <figure class="case-visual case-visual--icon-grid">
+      <img
+        class="case-visual__img"
+        src="assets/vsr-subject-icons-1.png"
+        alt="Grid of VSR course and project icons designed for the website"
+        loading="lazy"
+      />
+      <figcaption class="case-visual__cap">
+        Applied consistently across course and student project sections to improve recognition and navigation.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+
+
 
 
 <!-- =========================
@@ -1123,7 +1199,6 @@ html, body {
 ========================= -->
 <section class="case-section" id="interaction">
   <div class="case-section__inner">
-    <span class="case-section__eyebrow">DEVELOP</span>
 
     <h3 class="case-section__title">
       Interactions (FAQ image expand)
@@ -1170,7 +1245,6 @@ html, body {
 ========================= -->
 <section class="case-section" id="implementation">
   <div class="case-section__inner">
-    <span class="case-section__eyebrow">DEVELOP</span>
 
     <h3 class="case-section__title">
       Implementation notes
