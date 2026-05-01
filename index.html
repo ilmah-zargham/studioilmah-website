@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Studio Ilmah – Landing</title>
+   
+    <link
+  href="https://fonts.googleapis.com/css2?family=Caprasimo&family=DM+Mono:wght@400;500&family=Poppins:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+/>
 
     <link
   href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
@@ -13,6 +18,7 @@
     <link rel="stylesheet" href="css/styles.css" />
 
     <link rel="icon" type="image/png" href="assets/faviconwhite.png">
+
 
   </head>
 
@@ -24,7 +30,7 @@
 
     <!-- Sticky capsule nav (appears when you scroll) -->
 <nav class="sticky-nav" aria-label="Sticky navigation">
-  <a class="sticky-nav__link" href="#home" data-spy="home">Home</a>
+  <a class="sticky-nav__link" href="#top" data-spy="top">Home</a>
   <a class="sticky-nav__link" href="#projects" data-spy="projects">Projects</a>
   <a class="sticky-nav__link" href="#about" data-spy="about">About</a>
   <a class="sticky-nav__link" href="#contact" data-spy="contact">Contact</a>
@@ -36,38 +42,28 @@
 
 
 
-    <section class="landing-hero" id="home">
-     <header class="topbar">
-  <a class="brand" href="#home">
-    <img class="brand__logo" src="assets/logo.png" alt="Studio Ilmah logo" />
-    <span class="brand__name">Studio Ilmah</span>
-  </a>
+    <section class="landing-hero">
+      <header class="topbar">
+        <a class="brand" href="#">
+          <img
+            class="brand__logo"
+            src="assets/logo.png"
+            alt="Studio Ilmah logo"
+          />
+          <span class="brand__name">Studio Ilmah</span>
+        </a>
 
-  <nav class="nav" aria-label="Primary">
-    <a href="#projects">Projects</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- Mobile menu button (only shows on mobile) -->
-  <button class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
-    <span class="burger" aria-hidden="true"></span>
-  </button>
-
-  <!-- Mobile capsule nav (only shows on mobile) -->
-  <nav class="capsule-nav" aria-label="Mobile navigation">
-    <a class="capsule-link is-active" href="#home">Home</a>
-    <a class="capsule-link" href="#projects">Projects</a>
-    <a class="capsule-link" href="#about">About</a>
-    <a class="capsule-link" href="#contact">Contact</a>
-  </nav>
-</header>
-
-      
+        <nav class="nav" aria-label="Primary">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
 
       <div class="hero">
   <div class="hero__content">
     <div class="hero__hello">
+      
       <span>Hello! I’m</span>
     </div>
 
@@ -116,7 +112,6 @@
     </div>
 
     <div class="vsr-feature__content">
-      <div class="vsr-feature__triangle"></div>
 
       <h2 class="vsr-feature__title">VSR Website Redesign</h2>
 
@@ -141,7 +136,7 @@
 <section class="ecolu-feature" id="ecolu">
   <div class="ecolu-feature__container">
     <div class="ecolu-feature__content">
-      <div class="ecolu-feature__triangle"></div>
+      
 
       <h2 class="ecolu-feature__title">Ecolu</h2>
 
@@ -160,7 +155,7 @@
     </div>
 
     <div class="ecolu-feature__image-area" aria-hidden="true">
-      <div class="ecolu-feature__yellow-shape"></div>
+    
 
       <!-- Replace the src with your real Ecolu image -->
       <img
@@ -173,36 +168,33 @@
 </section>
    
 
-<section class="saas-feature" id="saas-project">
-  <div class="saas-feature__container">
-    <div class="saas-feature__image-area" aria-hidden="true">
-      <div class="saas-feature__shape"></div>
+<section class="visuals-feature" id="visuals-project">
+  <div class="visuals-feature__container">
+    <div class="visuals-feature__image-area" aria-hidden="true">
 
-      <!-- Replace with your SaaS project image -->
+      <!-- Replace with your visuals project image -->
       <img
-        class="saas-feature__media"
-        src="assets/saas-project-cover.png"
-        alt="SaaS project preview"
+        class="vsr-feature__media"
+        src="assets/laptop-samples.png"
+        alt="visuals project preview"
       />
     </div>
 
-    <div class="saas-feature__content">
-      <h2 class="saas-feature__title">SaaS Project</h2>
+    <div class="visuals-feature__content">
+      <h2 class="visuals-feature__title">Visual Design</h2>
 
-      <p class="saas-feature__description">
-        A software-as-a-service product focused on simplifying complex workflows
-        through clear information architecture, intuitive interfaces, and scalable
-        design systems.
+      <p class="visuals-feature__description">
+        A selection of logo designs, posters, and visual compositions created for academic, personal, and conceptual projects. This work explores typography, layout, and visual storytelling across different formats.
       </p>
 
-      <ul class="saas-feature__details">
-        <li><strong>Project type:</strong> SaaS product design</li>
-        <li><strong>Role:</strong> Product designer</li>
-        <li><strong>Focus:</strong> UX strategy, UI design, design system, usability</li>
+      <ul class="visuals-feature__details">
+        <li><strong>Project type:</strong> Visual design collection</li>
+        <li><strong>Role:</strong> Visual Designer</li>
+        <li><strong>Focus:</strong> Typography, layout, visual identity, composition</li>
       </ul>
 
-      <a href="saas-case-study.html" class="saas-feature__btn">
-        View case study
+      <a href="visual-design.html" class="visuals-feature__btn">
+        View Selected works
       </a>
     </div>
   </div>
@@ -338,11 +330,3 @@
 
   </body>
 </html>
-
-
-
-
-
-
-
-
