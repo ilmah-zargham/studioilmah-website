@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecolu Case Study</title>
+
+    <link rel="icon" type="image/png" href="assets/faviconwhite.png">
+<link rel="apple-touch-icon" href="assets/faviconwhite.png">
+
+
+    <style>
+      /* Base */
+      * { box-sizing: border-box; }
+      body{
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: #ffffff;
+        color: #0b0d10;
+      }
+      a { color: inherit; }
+      html { scroll-behavior: smooth; }
+
+      /* HERO */
+      .cs-hero{
+        background: #2733c7;
+        color: #ffffff;
+        padding: 72px 0;
+      }
+      .cs-hero__container{
+        min-height: 580px;
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .cs-hero__back{
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 14px;
+        text-decoration: none;
+        margin-bottom: 18px;
+      }
+      .cs-hero__back:hover{ color: rgba(243,245,247,0.95); }
+
+      .cs-hero__title{
+        font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+        font-weight: 700;
+        letter-spacing: -0.8px;
+        font-size: clamp(44px, 5.2vw, 78px);
+        line-height: 0.95;
+        margin: 0 0 18px;
+        text-transform: lowercase;
+      }
+
+      .cs-hero__subtitle{
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        line-height: 1.6;
+        margin: 0 0 26px;
+        max-width: 54ch;
+      }
+
+      .cs-hero__meta{
+        margin: 0 0 28px;
+        display: grid;
+        gap: 14px;
+      }
+      .cs-hero__row{
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 14px;
+        align-items: baseline;
+      }
+      .cs-hero__row dt{
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+      }
+      .cs-hero__row dd{
+        margin: 0;
+        color: rgb(255, 255, 255);
+      }
+
+      .cs-hero__cta{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 54px;
+        padding: 0 26px;
+        border-radius: 999px;
+        background: #e64a19;
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 10px 28px rgba(255, 122, 26, 0.25);
+        transition: transform 160ms ease, opacity 160ms ease;
+      }
+      .cs-hero__cta:hover{
+        transform: translateY(-1px);
+        opacity: 0.95;
+      }
+
+      .cs-hero__visual{
+        display: flex;
+        justify-content: flex-end;
+      }
+      .cs-hero__image{
+        width: min(720px, 100%);
+        height: auto;
+        border-radius: 18px;
+        display: block;
+      }
+
+      @media (max-width: 900px){
+        .cs-hero{ padding: 54px 0; }
+        .cs-hero__container{ grid-template-columns: 1fr; gap: 28px; }
+        .cs-hero__visual{ justify-content: flex-start; }
+        .cs-hero__row{ grid-template-columns: 120px 1fr; }
+      }
+
+
+
+
+/* this section is for hero video */
+
+
+
+/* FOR FIXING THE VIDEO SIZE */
+.phone-mockup {
+  position: relative;
+  width: min(820px, 100%);
+}
+
+.phone-frame {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.phone-video-wrap {
+  position: absolute;
+  z-index: 1;
+
+  /* screen area inside the phone */
+  top: 9.2%;
+  left: 30.5%;
+  width: 77.9%;
+  height: 85.8%;
+  overflow: hidden;
+  border-radius: 30px 40px
+}
+
+.phone-video {
+  width: 50%;
+  height: 95%;
+  object-fit: cover;
+  display: block;
+
+}
+
+
+
+
+
+
+      /* TOC */
+      .toc{
+        background: #ffffff;
+        color: #0b0d10;
+        padding: 70px 0 60px;
+      }
+      .toc__container{
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+      .toc__grid{
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 56px;
+        align-items: start;
+      }
+      .toc__title{
+        display: inline-block;
+        text-decoration: none;
+        color: #0b0d10;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        font-size: 20px;
+        margin-bottom: 14px;
+        transform: translateY(0);
+        transition: transform 180ms ease;
+      }
+      .toc__title:hover{ transform: translateY(-2px); }
+
+      .toc__list{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 14px;
+      }
+      .toc__link{
+        text-decoration: none;
+        color: #0b0d10;
+        font-size: 16px;
+        line-height: 1.55;
+        font-weight: 500;
+        display: inline-block;
+        transform: translateY(0) scale(1);
+        transition: color 170ms ease, transform 170ms ease, font-weight 170ms ease;
+      }
+    
+
+      @media (max-width: 980px){
+        .toc__grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
+      }
+      @media (max-width: 560px){
+        .toc__grid{ grid-template-columns: 1fr; }
+      }
+
+      /* SECTION BANNER (full-bleed) */
+      .section-banner{ background: #ffffff; margin: 0; padding: 0; }
+      .section-banner__bg{
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        background: #2733c7; /* ECOLU blue */
+        padding: 90px 0;
+      }
+      .section-banner__content{
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+        text-align: center;
+      }
+      .section-banner__title{
+        margin: 0;
+        color: #ffffff;
+        font-weight: 800;
+        letter-spacing: -0.6px;
+        font-size: clamp(32px, 4.5vw, 56px);
+        line-height: 1.1;
+      }
+
+      /* CASE CONTENT */
+      .case-section{
+        background: #ffffff;
+        padding: 110px 0 30px;
+      }
+      .case-section__inner{
+        width: min(760px, 92vw);
+        margin: 0 auto;
+      }
+      .case-section__eyebrow{
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 1.4px;
+        margin-bottom: 20px;
+        color: #0b0d10;
+      }
+      .case-section__title{
+        font-size: clamp(34px, 4vw, 48px);
+        font-weight: 800;
+        margin: 0 0 24px;
+        letter-spacing: -0.6px;
+        color: #0b0d10;
+      }
+      .case-section__subtitle{
+        margin: 34px 0 10px;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        color: #0b0d10;
+      }
+      .case-section__text{
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(11,13,16,0.82);
+      }
+      .case-section__text p{ margin: 0 0 22px; }
+      .case-section__text strong{ color: #0b0d10; font-weight: 700; }
+
+      .case-list{
+        margin: 0 0 22px;
+        padding-left: 20px;
+        color: rgba(11,13,16,0.82);
+        font-size: 18px;
+        line-height: 1.8;
+      }
+      .case-list li{ margin: 10px 0; }
+
+
+
+    
+
+
+
+
+
+
+
+
+
+      .ecolu-screen-1 { background-image: url("assets/ecolu/screen-1.png"); }
+.ecolu-screen-2 { background-image: url("assets/ecolu/screen-2.png"); }
+.ecolu-screen-3 { background-image: url("assets/ecolu/screen-3.png"); }
+.ecolu-screen-4 { background-image: url("assets/ecolu/screen-4.png"); }
+
+      
+
+/* ===== More Projects ===== */
+
+.more-projects {
+  background: #ffffff;
+  padding: 90px 0 0;
+}
+
+.more-projects__header {
+  width: min(1120px, 92vw);
+  margin: 0 auto 44px;
+}
+
+.more-projects__eyebrow {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.more-projects__title {
+  margin: 0;
+  font-size: clamp(42px, 6vw, 78px);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #0b0d10;
+}
+
+.more-projects__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+}
+
+.more-card {
+  min-height: 520px;
+  padding: clamp(42px, 5vw, 72px);
+  border-radius: 0;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: filter 180ms ease;
+}
+
+.more-card:hover {
+  filter: brightness(1.06);
+}
+
+.more-card__type {
+  margin: 0 0 20px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.more-card h3 {
+  margin: 0 0 26px;
+  font-size: clamp(44px, 5vw, 76px);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.more-card p {
+  margin: 0;
+  max-width: 36ch;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.more-card span {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* Card colors */
+.more-card--visual {
+  background: #ffca39;
+  color: #1f2ab0;
+}
+
+.more-card--vsr {
+  background: #0b0d10;
+  color: #ffffff;
+}
+
+/* ===== Main Footer ===== */
+
+.site-footer {
+  background: #ffffff;
+  color: #1f2ab0;
+  padding: 80px 36px 60px;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 42ch;
+  margin: 0 auto 32px;
+}
+
+.footer-meta {
+  font-size: 0.85rem;
+  color: #2733c7;
+}
+
+
+/* Mobile */
+@media (max-width: 760px) {
+  .more-projects__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .more-card {
+    min-height: 420px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== CASE IMAGES (NEW) ===== */
+
+.case-image {
+  margin-top: 40px;
+}
+
+.case-image img {
+  width: 100%;
+  border-radius: 18px;
+  display: block;
+}
+
+/* Grid layouts for UI screens */
+.case-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.case-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.case-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+/* Video */
+.case-video {
+  margin-top: 50px;
+}
+
+.case-video video {
+  width: 100%;
+  border-radius: 18px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .case-grid-2,
+  .case-grid-3,
+  .case-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== Premium Editorial Enhancements ===== */
+
+
+
+/* Premium image blocks */
+.case-image,
+.case-grid-2,
+.case-grid-3,
+.case-grid-4,
+.case-video {
+  margin-top: 54px;
+}
+
+.case-image img,
+.case-grid-2 img,
+.case-grid-3 img,
+.case-grid-4 img,
+.case-video video {
+  width: 100%;
+  display: block;
+  border-radius: 22px;
+  background: #f6f6f6;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.08);
+}
+
+/* Phone screen images should not become too huge */
+.case-grid-3 img,
+.case-grid-4 img {
+  object-fit: contain;
+}
+
+/* Grid layouts */
+.case-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px;
+}
+
+.case-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.case-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Editorial captions */
+.case-caption {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(11, 13, 16, 0.58);
+}
+
+/* Feature callout */
+.case-callout {
+  margin: 44px 0 0;
+  padding: 34px;
+  border-radius: 24px;
+  background: #e5f9eb;
+  color: #0b0d10;
+}
+
+.case-callout p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slight premium hover for images */
+.case-image img,
+.case-grid-2 img,
+.case-grid-3 img,
+.case-grid-4 img {
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+.case-image img:hover,
+.case-grid-2 img:hover,
+.case-grid-3 img:hover,
+.case-grid-4 img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.11);
+}
+
+
+
+
+/* Basic image/video protection */
+img,
+video,
+.work-sample,
+.case-image,
+.case-visual,
+.case-grid-2,
+.case-grid-3,
+.case-grid-4 {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+img {
+  pointer-events: none;
+}
+
+/* Videos stay clickable unless they are decorative */
+video {
+  pointer-events: auto;
+}
+
+/* Only decorative/autoplay videos are not clickable */
+.decorative-video {
+  pointer-events: none;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <section class="cs-hero" id="top">
+      <div class="cs-hero__container">
+        <div class="cs-hero__content">
+          <a class="cs-hero__back" href="index.html">← Back</a>
+
+          <h1 class="cs-hero__title">ecolu</h1>
+
+          <p class="cs-hero__subtitle">
+  Ecolu is an eco-friendly shopping app concept designed to help users make more conscious product choices through clear categories, simple guidance, and a calm mobile shopping experience.
+</p>
+
+          <dl class="cs-hero__meta">
+            <div class="cs-hero__row">
+              <dt>Project type:</dt>
+              <dd>Product concept + UI design</dd>
+            </div>
+            <div class="cs-hero__row">
+              <dt>Role:</dt>
+              <dd>Product designer</dd>
+            </div>
+            <div class="cs-hero__row">
+              <dt>Industry:</dt>
+              <dd>Sustainable shopping</dd>
+            </div>
+            <div class="cs-hero__row">
+              <dt>Tools:</dt>
+              <dd>Figma, Adobe Illustrator</dd>
+            </div>
+            <div class="cs-hero__row">
+              <dt>Duration:</dt>
+              <dd>2026 (working on)</dd>
+            </div>
+          </dl>
+
+          <a class="cs-hero__cta" href="#case-study">View case study</a>
+        </div>
+
+        <div class="cs-hero__visual">
+  <div class="phone-mockup">
+    <div class="phone-video-wrap decorative-video">
+      
+       <video class="phone-video" autoplay muted loop playsinline>
+        <source src="assets/ecolu/ecolu-prototype.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <img
+      class="phone-frame"
+      src="assets/ecolu/hero-ecolu.png"
+      alt="Phone mockup frame"
+    />
+  </div>
+</div>
+    </section>
+
+    <section class="toc" aria-label="Case study table of contents">
+      <div class="toc__container">
+        <div class="toc__grid">
+          <div class="toc__col">
+            <a class="toc__title" href="#discover">DISCOVER</a>
+            <ul class="toc__list">
+              <li><a class="toc__link" href="#context">Project context</a></li>
+              <li><a class="toc__link" href="#problem">The problem</a></li>
+            </ul>
+          </div>
+
+          <div class="toc__col">
+            <a class="toc__title" href="#define">DEFINE</a>
+            <ul class="toc__list">
+              <li><a class="toc__link" href="#goals">Goals</a></li>
+              <li><a class="toc__link" href="#scope">Scope</a></li>
+            </ul>
+          </div>
+
+          <div class="toc__col">
+            <a class="toc__title" href="#develop">DEVELOP</a>
+            <ul class="toc__list">
+              <li><a class="toc__link" href="#flows">Flows & IA</a></li>
+              <li><a class="toc__link" href="#ui">UI design</a></li>
+            </ul>
+          </div>
+
+          <div class="toc__col">
+            <a class="toc__title" href="#deliver">DELIVER</a>
+            <ul class="toc__list">
+              <li><a class="toc__link" href="#outcomes">Outcomes</a></li>
+              <li><a class="toc__link" href="#next">Next steps</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCOVER -->
+<section class="section-banner" id="discover">
+  <div class="section-banner__bg">
+    <div class="section-banner__content">
+      <h2 class="section-banner__title">DISCOVER</h2>
+    </div>
+  </div>
+</section>
+
+<section class="case-section" id="case-study">
+  <div class="case-section__inner">
+    <h3 class="case-section__title" id="context">Project context</h3>
+
+    <div class="case-section__text">
+      <p>
+        Ecolu is a mobile shopping concept that helps users make more conscious purchasing decisions without adding friction to the experience.
+
+      <p>
+        Instead of overwhelming users with sustainability information, the product focuses on clarity, guidance, and familiar shopping patterns, making eco-friendly choices feel natural within a standard e-commerce flow.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="case-section__inner">
+    <h3 class="case-section__title" id="problem">The problem</h3>
+
+    <div class="case-section__text">
+      <p>
+       Sustainable shopping platforms often introduce friction in two ways:
+
+They overload users with information that is difficult to compare
+Or they simplify too much, removing trust and transparency
+
+At the same time, users still expect the speed and familiarity of modern shopping apps.
+
+      <p><strong> The challenge was to design a system that supports better decisions without slowing users down.</strong>
+      
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DEFINE -->
+<section class="section-banner" id="define">
+  <div class="section-banner__bg">
+    <div class="section-banner__content">
+      <h2 class="section-banner__title">DEFINE</h2>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="case-section__inner">
+    <h3 class="case-section__title" id="goals">Goals</h3>
+
+    <div class="case-section__text">
+      <ul class="case-list">
+        <li>Create a calm and approachable shopping experience for sustainable products.</li>
+        <li>Make product information easy to scan, compare, and understand.</li>
+        <li>Reduce friction during onboarding and early interaction.</li>
+        <li>Build a visual system that communicates trust and clarity.</li>
+      </ul>
+
+      <h3 class="case-section__subtitle" id="scope">Scope</h3>
+      <p>
+      The project covers the core product experience, including onboarding, discovery, search, product detail, cart, checkout, profile, and wishlist.
+      </p>
+      <p> 
+        The focus was on defining a <strong>end-to-end flow </strong>, rather than isolated screens.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+   <h3 class="case-section__title">Design system</h3>
+
+    <div class="case-section__text">
+      <p>
+        A lightweight design system was created to ensure consistency across the app.
+      </p>
+      <p>
+      It includes typography, color usage, components, and interaction patterns designed to support readability and reduce cognitive load.
+      </p>
+    </div>
+
+    <div class="case-image">
+      <img src="assets/ecolu/design-system-combined1.png" alt="Ecolu design system overview">
+      <p class="case-caption">
+        Design system foundation: typography, colors, buttons.
+      </p>
+    </div>
+    <div class="case-image">
+      <img src="assets/ecolu/design-system-combined2.png" alt="Ecolu design system overview">
+      <p class="case-caption">
+        Design system foundation: inputs, icons, headers, and navigation.
+      </p>
+    </div>
+     <div class="case-image">
+      <img src="assets/ecolu/design-system-combined3.png" alt="Ecolu design system overview">
+      <p class="case-caption">
+        Design system foundation: Cards, List items, Base Input Components,  Base Navigation Components, Base List Components and Base Input Components.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DEVELOP -->
+<section class="section-banner" id="develop">
+  <div class="section-banner__bg">
+    <div class="section-banner__content">
+      <h2 class="section-banner__title">DEVELOP</h2>
+    </div>
+  </div>
+</section>
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+    <h3 class="case-section__title">Early concepts</h3>
+
+    <div class="case-section__text">
+      <p>
+        Early explorations focused on different onboarding approaches and levels of personalization.
+
+Some versions introduced multiple setup steps before entering the app, aiming to improve recommendation quality. </p>
+    </div>
+
+    <div class="case-image">
+      <img src="assets/ecolu/early-concepts-combined.png" alt="Early Ecolu concept screens">
+      <p class="case-caption">
+        Early onboarding and concept explorations before simplifying the entry flow.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+    <h3 class="case-section__title">Iteration & onboarding simplification</h3>
+
+    <div class="case-section__text">
+      <p>
+        The initial onboarding flow required users to complete several steps before accessing the product.
+
+This created unnecessary friction at the beginning of the experience.
+
+      </p>
+      <div class="case-section__text">
+  <p>
+    The flow was simplified to focus on two key actions:
+  </p>
+
+  <ul class="case-list">
+    <li><strong>Account creation</strong></li>
+    <li><strong>Lightweight interest selection</strong></li>
+  </ul>
+</div>
+<p> 
+  Additional personalization was moved into the profile section.
+</p>
+
+      <p> <strong>This shift prioritizes early value over early data collection.</strong>
+      </p>
+    </div>
+
+    <div class="case-grid-2">
+      <div>
+        <img src="assets/ecolu/old-registration-combined.png" alt="Old Ecolu registration flow with too many steps">
+        <p class="case-caption">Before: longer registration with too many setup steps.</p>
+      </div>
+
+      <div>
+        <img src="assets/ecolu/new-registration-combined.png" alt="Simplified Ecolu registration flow">
+        <p class="case-caption">After: simplified onboarding focused on faster entry.</p>
+      </div>
+    </div>
+
+    <div class="case-callout">
+      <p>
+        Key design decision: I moved non-essential personalization steps out of onboarding, so users can reach the product experience faster and adjust preferences later.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+    <h3 class="case-section__title" id="flows">Flows & information architecture</h3>
+
+    <div class="case-section__text">
+      <p>
+        User flows were mapped to define how users move between key states such as onboarding, discovery, search, cart, and checkout.
+      </p>
+    </div>
+    <div class="case-section__text">
+  <p>
+    This helped ensure:
+  </p>
+
+  <ul class="case-list">
+    <li><strong>clear transitions between screens</strong></li>
+    <li><strong>predictable navigation</strong></li>
+    <li><strong>minimal dead-ends in the experience</strong></li>
+  </ul>
+</div>
+
+    <div class="case-grid-3">
+      <div>
+        <img src="assets/ecolu/user-flow-onboarding.png" alt="Ecolu onboarding user flow">
+        <p class="case-caption">Onboarding flow</p>
+      </div>
+
+      <div>
+        <img src="assets/ecolu/user-flow-search.png" alt="Ecolu search user flow">
+        <p class="case-caption">Search and discovery flow</p>
+      </div>
+
+      <div>
+        <img src="assets/ecolu/user-flow-checkout.png" alt="Ecolu checkout user flow">
+        <p class="case-caption">Checkout flow</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+    <h3 class="case-section__title">Wireframes</h3>
+
+    <div class="case-section__text">
+      <p>
+       Low-fidelity wireframes were used to define layout structure and interaction patterns before visual design.
+      </p>
+    </div>
+    <div class="case-section__text">
+  <p>
+    This included:
+  </p>
+
+  <ul class="case-list">
+    <li><strong>product card hierarchy</strong></li>
+    <li><strong>navigation structure</strong></li>
+    <li><strong>filtering behavior</strong></li>
+    <li><strong>wishlist and profile logic</strong></li>
+  </ul>
+</div>
+    <div class="case-image">
+      <img src="assets/ecolu/wireframes-combined.png" alt="Ecolu low-fidelity wireframes">
+      <p class="case-caption">
+        Wireframes covering the main app structure, including home, search, filters, product page, cart, checkout, profile, interests, and wishlist.
+      </p>
+    </div>
+
+    <div class="case-image">
+  <img src="assets/ecolu/grid-system.png" alt="Grid system overlay on UI">
+  <p class="case-caption">
+    Example of grid structure.The layout is built on a consistent grid system to maintain alignment, spacing, and visual rhythm across screens.
+  </p>
+</div>
+  </div>
+</section>
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+    <h3 class="case-section__title">Prototype screens</h3>
+
+    <div class="case-section__text">
+      <p>
+        The prototype translated the structure into a clickable product flow, focusing on onboarding, product discovery, product details, checkout, profile, and wishlist states.
+      </p>
+    </div>
+
+    <div class="case-image">
+      <img src="assets/ecolu/prototype-screens-combined.png" alt="Ecolu prototype screens">
+      <p class="case-caption">
+        Key prototype screens used to test and communicate the main interaction flow.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+<h3 class="case-section__title">Wishlist & saved items</h3>
+
+<div class="case-section__text">
+  <p>
+    The wishlist allows users to save products across categories and return
+    to them later. 
+  </p>
+</div>
+<div class="case-section__text">
+  <p>
+    This supports:
+  </p>
+
+  <ul class="case-list">
+    <li><strong>comparison across products</strong></li>
+    <li><strong>reduced pressure to purchase immediately</strong></li>
+  </ul>
+</div>
+
+<div class="case-image">
+  <img src="assets/ecolu/wishlist.png" alt="Wishlist screens">
+</div>
+</div>
+</section>
+
+<!-- DELIVER -->
+<section class="section-banner" id="deliver">
+  <div class="section-banner__bg">
+    <div class="section-banner__content">
+      <h2 class="section-banner__title">DELIVER</h2>
+    </div>
+  </div>
+</section>
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+    <h3 class="case-section__title" id="ui">Final UI design</h3>
+
+    <div class="case-section__text">
+      <p>
+        The final interface focuses on hierarchy, readability, and consistency.
+    </div>
+   <div class="case-section__text">
+  <p>
+    Design decisions prioritize:
+  </p>
+
+  <ul class="case-list">
+    <li><strong>clear product presentation</strong></li>
+    <li><strong>minimal visual noise</strong></li>
+    <li><strong>predictable interactions</strong></li>
+  </ul>
+</div>
+    <div class="case-image">
+      <img src="assets/ecolu/final-ui-discovery.png" alt="Ecolu final discovery and home screens">
+      <p class="case-caption">Discovery, onboarding, and home experience.</p>
+    </div>
+
+    <div class="case-image">
+      <img src="assets/ecolu/final-ui-checkout.png" alt="Ecolu final product, cart, and checkout screens">
+      <p class="case-caption">Product detail, cart, checkout, and order confirmation flow.</p>
+    </div>
+
+    <div class="case-image">
+      <img src="assets/ecolu/final-ui-profile.png" alt="Ecolu final profile and wishlist screens">
+      <p class="case-caption">Profile, badges, interests, and and account settings.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+    <h3 class="case-section__title" id="ui">Post-purchase experience</h3>
+
+    <div class="case-section__text">
+      <p>
+      The experience continues after checkout. Users can track their orders,
+    review past purchases, and apply filters to quickly find relevant items.
+      </p>
+      <p>
+    The goal was to make order tracking feel simple and transparent,
+    reinforcing trust in the platform.
+  </p>
+    </div>
+
+    <div class="case-image">
+      <img src="assets/ecolu/orders.png" alt="Order tracking and filtering screens">
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section class="case-section case-section--wide">
+  <div class="case-section__inner">
+    <h3 class="case-section__title" id="outcomes">Final prototype flow</h3>
+
+    <div class="case-section__text">
+      <p>
+        The final prototype demonstrates the main shopping journey: starting the app, entering the home experience, opening a product, adding it to the cart, completing checkout, and receiving eco-point feedback after purchase.
+      </p>
+    </div>
+
+    <div class="case-video">
+      <video controls>
+        <source src="assets/ecolu/prototype.mp4" type="video/mp4">
+      </video>
+      <p class="case-caption">
+        Clickable prototype video showing the main Ecolu shopping journey.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="case-section__inner">
+    <h3 class="case-section__title">Outcomes</h3>
+
+    <div class="case-section__text">
+      <p>
+        This project helped me translate a broad concept into a structured mobile product experience. I worked through visual direction, onboarding decisions, user flows, wireframes, and high-fidelity screens.
+      </p>
+
+      <p>
+        A key learning from this project was the importance of reducing early friction and allowing users to experience value before asking for too much input.
+      </p>
+    </div>
+
+    <h3 class="case-section__title" id="next">Next steps</h3>
+
+    <div class="case-section__text">
+      <ul class="case-list">
+        <li>Complete the clickable prototype for the full shopping journey.</li>
+        <li>Test onboarding, product discovery, and checkout with users.</li>
+        <li>Refine product comparison and sustainability information.</li>
+        <li>Develop a more detailed design system for future scalability.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="more-projects">
+  <div class="more-projects__header">
+  </div>
+
+  <div class="more-projects__grid">
+    <a class="more-card more-card--visual" href="visual-design.html">
+      <div>
+        <p class="more-card__type">Visual Design</p>
+        <h3>Visual Design</h3>
+        <p>Identity design, posters, editorial samples, and visual explorations.</p>
+      </div>
+      <span>View work →</span>
+    </a>
+
+    <a class="more-card more-card--vsr" href="vsr-case-study.html">
+      <div>
+        <p class="more-card__type">Case study</p>
+        <h3>VSR Website Redesign</h3>
+        <p>Website redesign, visual system, accessibility, and responsive layout.</p>
+      </div>
+      <span>View case study →</span>
+    </a>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-text">
+      Thank you for your interest in my work!
+    </p>
+    <p class="footer-meta">
+      © 2026 Ilmah
+    </p>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+<script>
+  const revealElements = document.querySelectorAll(
+    ".case-section, .section-banner, .case-image, .case-grid-2, .case-grid-3, .case-grid-4, .case-video"
+  );
+
+  revealElements.forEach((el) => {
+    el.classList.add("reveal");
+  });
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealElements.forEach((el) => revealObserver.observe(el));
+</script>
+
+
+
+<script>
+  document.addEventListener("contextmenu", function (e) {
+    if (
+      e.target.tagName === "IMG" ||
+      e.target.tagName === "VIDEO" ||
+      e.target.closest(".work-sample") ||
+      e.target.closest(".case-image") ||
+      e.target.closest(".case-visual") ||
+      e.target.closest(".case-grid-2") ||
+      e.target.closest(".case-grid-3") ||
+      e.target.closest(".case-grid-4")
+    ) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+  </body>
+</html>
