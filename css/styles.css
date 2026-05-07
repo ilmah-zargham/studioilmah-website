@@ -197,7 +197,7 @@ html, body {
 
 /* When scrolled: hero becomes yellow */
 .landing-hero.is-morphed {
-  background: var(--arc-yellow);
+  background: #bfe6ff;
 }
 
 /* Centered -> Left aligned (and sticky) */
