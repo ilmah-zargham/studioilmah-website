@@ -150,7 +150,7 @@ html, body {
   width: min(120vw, 1600px);
   height: min(120vw, 1600px);
   bottom: calc(-0.72 * min(120vw, 1600px));
-  background: var(--arc-yellow);
+  background: #bfe6ff;
   border-radius: 50%;
 
   /* NEW: soft fade at the bottom */
