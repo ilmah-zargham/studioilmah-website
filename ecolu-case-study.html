@@ -971,10 +971,98 @@ video {
   max-width: 100%;
   height: auto;
 }
+
+
+
+      /* ===== Subpage Top Navigation ===== */
+
+.subpage-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.subpage-topbar__inner {
+  width: min(1120px, 92vw);
+  height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subpage-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 800;
+  color: #1a25c5;
+}
+
+.subpage-brand img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.subpage-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.subpage-nav a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0b0d10;
+}
+
+.subpage-nav a: hover {
+  color: #1a25c5;
+}
+
+@media (max-width: 700px) {
+  .subpage-topbar__inner {
+    height: auto;
+    padding: 14px 0;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .subpage-nav {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .subpage-nav a {
+    font-size: 14px;
+  }
+}
     </style>
   </head>
 
   <body>
+    <header class="subpage-topbar">
+    <div class="subpage-topbar__inner">
+      <a class="subpage-brand" href="index.html#top">
+        <img src="assets/logo.png" alt="Studio Ilmah logo">
+      </a>
+
+      <nav class="subpage-nav" aria-label="Subpage navigation">
+        <a href="index.html#top">Home</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
     <section class="cs-hero" id="top">
       <div class="cs-hero__container">
         <div class="cs-hero__content">
