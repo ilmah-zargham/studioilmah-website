@@ -250,11 +250,14 @@ if (menuToggle && mobileMenu && menuClose) {
   menuToggle.addEventListener("click", () => {
     mobileMenu.classList.add("active");
     document.body.classList.add("menu-open");
+       menuToggle.style.display = "none";
   });
 
   menuClose.addEventListener("click", () => {
     mobileMenu.classList.remove("active");
     document.body.classList.remove("menu-open");
+      menuToggle.style.display = "block";
+      
   });
 
   mobileMenuLinks.forEach((link) => {
