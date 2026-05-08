@@ -235,3 +235,32 @@
     if (!isMobile()) closeMenu();
   });
 })();
+
+
+
+
+
+
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+const menuClose = document.querySelector(".menu-close");
+const mobileMenuLinks = document.querySelectorAll(".mobile-menu__links a");
+
+if (menuToggle && mobileMenu && menuClose) {
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.add("active");
+    document.body.classList.add("menu-open");
+  });
+
+  menuClose.addEventListener("click", () => {
+    mobileMenu.classList.remove("active");
+    document.body.classList.remove("menu-open");
+  });
+
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
+  });
+}
